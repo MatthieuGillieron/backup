@@ -14,6 +14,15 @@
 
 int	close_window(t_game *game)
 {
+	if (game->textures.north.img)
+		mlx_destroy_image(game->mlx, game->textures.north.img);
+	if (game->textures.south.img)
+		mlx_destroy_image(game->mlx, game->textures.south.img);
+	if (game->textures.east.img)
+		mlx_destroy_image(game->mlx, game->textures.east.img);
+	if (game->textures.west.img)
+		mlx_destroy_image(game->mlx, game->textures.west.img);
+	free_map_data(&game->map_data);
 	mlx_destroy_window(game->mlx, game->win);
 	exit(0);
 }

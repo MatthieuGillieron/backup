@@ -24,6 +24,7 @@ int	init_game(t_game *game)
 	game->win = mlx_new_window(game->mlx, game->win_w, game->win_h, "cub3D");
 	if (!game->win)
 		return (0);
+	mlx_hook(game->win, 17, 0, close_window, game);
 	if (!load_textures(game))
 		return (0);
 	return (1);

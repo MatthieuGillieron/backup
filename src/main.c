@@ -25,7 +25,19 @@ void	game_setup(int ac, char **av, t_game *game)
 	if (!files)
 		exit(1);
 	if (check_file(files, &map))
+	{
+		// Libérer files avant de quitter
+		int i = 0;
+		while (files[i])
+			free(files[i++]);
+		free(files);
 		exit(1);
+	}
+	// Libérer files après utilisation
+	int i = 0;
+	while (files[i])
+		free(files[i++]);
+	free(files);
 	game->map_data = map;
 	game->color.set_floor = map.colors.set_floor;
 	game->color.set_ceiling = map.colors.set_ceiling;
