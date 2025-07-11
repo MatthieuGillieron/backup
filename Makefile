@@ -85,7 +85,7 @@ UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Linux)
 MLX_DIR = mlx_linux
-MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
+MLX_FLAGS = -L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz
 MLX_INC = -I$(MLX_DIR)
 else
 MLX_DIR = mlx
@@ -151,18 +151,18 @@ $(NAME)_bonus: $(BONUS_OBJS) $(LIBFT) $(MLX_DIR)/libmlx.a
 clean:
 	@echo $(CLEAN_MSG)
 	@$(RM) -r $(OBJDIR) 2>/dev/null || true
-	@find src -name '*.o' -delete
-	@find src_bonus -name '*.o' -delete
-	@make clean -C $(LIBFTDIR) > /dev/null 2>&1
-	@make clean -C $(MLX_DIR) > /dev/null 2>&1
+	@find src -name '*.o' -delete 2>/dev/null || true
+	@find src_bonus -name '*.o' -delete 2>/dev/null || true
+	@make clean -C $(LIBFTDIR) > /dev/null 2>&1 || true
+	@make clean -C $(MLX_DIR) > /dev/null 2>&1 || true
 
 fclean: clean
 	@echo $(FCLEAN_MSG)
 	@$(RM) $(NAME) 2>/dev/null || true
-	@find src -name '*.o' -delete
-	@find src_bonus -name '*.o' -delete
-	@make fclean -C $(LIBFTDIR) > /dev/null 2>&1
-	@make clean -C $(MLX_DIR) > /dev/null 2>&1
+	@find src -name '*.o' -delete 2>/dev/null || true
+	@find src_bonus -name '*.o' -delete 2>/dev/null || true
+	@make fclean -C $(LIBFTDIR) > /dev/null 2>&1 || true
+	@make clean -C $(MLX_DIR) > /dev/null 2>&1 || true
 
 re: fclean all
 
