@@ -12,6 +12,25 @@
 
 #include "../includes/cube3d.h"
 
+static void	free_files(char **files)
+{
+	int	i;
+
+	i = 0;
+	while (files[i])
+		free(files[i++]);
+	free(files);
+}
+
+static void	setup_game_data(t_game *game, t_map_data *map)
+{
+	game->map_data = *map;
+	game->color.set_floor = map->colors.set_floor;
+	game->color.set_ceiling = map->colors.set_ceiling;
+	game->player = map->player;
+	game->map = map->map;
+}
+
 void	game_setup(int ac, char **av, t_game *game)
 {
 	char		**files;
@@ -26,21 +45,11 @@ void	game_setup(int ac, char **av, t_game *game)
 		exit(1);
 	if (check_file(files, &map))
 	{
-		int i = 0;
-		while (files[i])
-			free(files[i++]);
-		free(files);
+		free_files(files);
 		exit(1);
 	}
-	int i = 0;
-	while (files[i])
-		free(files[i++]);
-	free(files);
-	game->map_data = map;
-	game->color.set_floor = map.colors.set_floor;
-	game->color.set_ceiling = map.colors.set_ceiling;
-	game->player = map.player;
-	game->map = map.map;
+	free_files(files);
+	setup_game_data(game, &map);
 	if (!init_game(game))
 		exit(1);
 }
