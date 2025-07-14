@@ -201,3 +201,10 @@ ifeq ($(shell uname), Darwin)
 else
 	@ulimit -n 1024 && valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) $(ARGS)
 endif
+leaks-bonus: bonus
+	@echo "\033[1;94m Test des fuites mémoire bonus... 🎮\033[0m"
+ifeq ($(shell uname), Darwin)
+	@leaks -atExit -- ./$(NAME) $(ARGS) || true
+else
+	@ulimit -n 1024 && valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS)
+endif
