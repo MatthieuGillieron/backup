@@ -2,7 +2,7 @@ NO ./textures/n.xpm
 SO ./textures/s.xpm
 WE ./textures/w.xpm
 EA ./textures/e.xpm
-F 220,100
+F 220,100,00
 C 60,140,70
 
 1111111111111111111111111

@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:23:26 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/06/24 20:20:16 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/15 22:59:20 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,16 @@ char	**open_map(char *map)
 	char	**line;
 	char	*current;
 	int		i;
+	char	*ext;
 
 	if (!map)
 		return (NULL);
+	ext = ft_strrchr(map, '.');
+	if (!ext || ft_strncmp(ext, ".cub", 5) != 0)
+	{
+		print_error(ERR_MAP_EXT, NULL);
+		return (NULL);
+	}
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
