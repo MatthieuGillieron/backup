@@ -1,6 +1,6 @@
 NO ./textures/n.xpm
 SO ./textures/s.xpm
-WE ./textures/a.xpm
+WE ./textures/w.xpm
 EA ./textures/e.xpm
 F 25, 40, 60
 C 60, 140, 70

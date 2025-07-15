@@ -3,33 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:15:08 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/14 13:28:35 by mg               ###   ########.fr       */
+/*   Updated: 2025/07/01 11:01:54 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
-
-static void	free_files(char **files)
-{
-	int	i;
-
-	i = 0;
-	while (files[i])
-		free(files[i++]);
-	free(files);
-}
-
-static void	setup_game_data(t_game *game, t_map_data *map)
-{
-	game->map_data = *map;
-	game->color.set_floor = map->colors.set_floor;
-	game->color.set_ceiling = map->colors.set_ceiling;
-	game->player = map->player;
-	game->map = map->map;
-}
 
 void	game_setup(int ac, char **av, t_game *game)
 {
@@ -49,7 +30,6 @@ void	game_setup(int ac, char **av, t_game *game)
 		exit(1);
 	if (check_file(files, &map))
 	{
-<<<<<<< HEAD
 		int i = 0;
 		while (files[i])
 			free(files[i++]);
@@ -65,13 +45,6 @@ void	game_setup(int ac, char **av, t_game *game)
 	game->color.set_ceiling = map.colors.set_ceiling;
 	game->player = map.player;
 	game->map = map.map;
-=======
-		free_files(files);
-		exit(1);
-	}
-	free_files(files);
-	setup_game_data(game, &map);
->>>>>>> 4f29e2d78fb801ac1e49f0d259b6cd2ee62b13a9
 	if (!init_game(game))
 		exit(1);
 }
