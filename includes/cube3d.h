@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:58:45 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/01 11:00:18 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/15 23:22:10 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <float.h>
 # include "../mlx/mlx.h"
 # include "errors.h"
-# include "../mlx_linux/mlx.h"
+//# include "../mlx_linux/mlx.h"
 
 
 # define FOV 1.0472
