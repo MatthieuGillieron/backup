@@ -20,20 +20,22 @@ void	game_setup(int ac, char **av, t_game *game)
 	ft_bzero(&map, sizeof(map));
 	ft_bzero(game, sizeof(*game));
 	if (ac != 2)
+	{
+		printf("\033[1;91mErreur: Nombre d'arguments incorrect !\033[0m\n");
+		printf("\033[1;96mUsage: \033[1;93m%s \033[1;92mmap/map-name.cub\033[0m\n", av[0]);
 		exit(1);
+	}
 	files = open_map(av[1]);
 	if (!files)
 		exit(1);
 	if (check_file(files, &map))
 	{
-		// Libérer files avant de quitter
 		int i = 0;
 		while (files[i])
 			free(files[i++]);
 		free(files);
 		exit(1);
 	}
-	// Libérer files après utilisation
 	int i = 0;
 	while (files[i])
 		free(files[i++]);
