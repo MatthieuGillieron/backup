@@ -249,7 +249,7 @@ int			is_player(char c);
 int			is_playable(char c);
 int			check_file(char **files, t_map_data *map);
 int			rgb_to_hex(char *rgb_str);
-void		parse_colors(t_map_data *data);
+int			parse_colors(t_map_data *data);
 int			is_line_empty(const char *line);
 
 //-----------*** raycasting ***------------

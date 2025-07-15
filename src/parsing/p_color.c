@@ -12,12 +12,7 @@
 
 #include "../../includes/cube3d.h"
 
-static int	validate_rgb(int r, int g, int b)
-{
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		return (0);
-	return (1);
-}
+
 
 static void	free_split(char **split)
 {
@@ -32,12 +27,40 @@ static void	free_split(char **split)
 	free(split);
 }
 
+static int	is_valid_number(char *str)
+{
+	int	i;
+	char	*trimmed;
+
+	trimmed = ft_strtrim(str, " \t\n\r");
+	if (!trimmed || !*trimmed)
+	{
+		if (trimmed)
+			free(trimmed);
+		return (0);
+	}
+	i = 0;
+	while (trimmed[i])
+	{
+		if (!ft_isdigit(trimmed[i]))
+		{
+			free(trimmed);
+			return (0);
+		}
+		i++;
+	}
+	free(trimmed);
+	return (1);
+}
+
 static int	parse_rgb(char **rgb_split, int *r, int *g, int *b)
 {
+	if (!is_valid_number(rgb_split[0]) || !is_valid_number(rgb_split[1]) || !is_valid_number(rgb_split[2]))
+		return (0);
 	*r = ft_atoi(rgb_split[0]);
 	*g = ft_atoi(rgb_split[1]);
 	*b = ft_atoi(rgb_split[2]);
-	if (!validate_rgb(*r, *g, *b))
+	if (*r < 0 || *r > 255 || *g < 0 || *g > 255 || *b < 0 || *b > 255)
 		return (0);
 	return (1);
 }
@@ -56,7 +79,11 @@ int	rgb_to_hex(char *rgb_str)
 	rgb_split = ft_split(trimmed, ',');
 	free(trimmed);
 	if (!rgb_split || !rgb_split[0] || !rgb_split[1] || !rgb_split[2])
+	{
+		if (rgb_split)
+			free_split(rgb_split);
 		return (-1);
+	}
 	if (!parse_rgb(rgb_split, &r, &g, &b))
 	{
 		free_split(rgb_split);
@@ -66,8 +93,21 @@ int	rgb_to_hex(char *rgb_str)
 	return ((r << 16) | (g << 8) | b);
 }
 
-void	parse_colors(t_map_data *data)
+int	parse_colors(t_map_data *data)
 {
 	data->colors.set_floor = rgb_to_hex(data->colors.floor);
+	if (data->colors.set_floor == -1)
+	{
+		printf("\033[1;91mErreur: Couleurs RGB invalides\033[0m\n");
+		printf("\033[1;94mExemple: \033[1;92mF 220,100,0\033[0m\n");
+		return (0);
+	}
 	data->colors.set_ceiling = rgb_to_hex(data->colors.ceiling);
+	if (data->colors.set_ceiling == -1)
+	{
+		printf("\033[1;91mErreur: Couleurs RGB invalides\033[0m\n");
+		printf("\033[1;94mExemple: \033[1;92mC 60,140,70\033[0m\n");
+		return (0);
+	}
+	return (1);
 }

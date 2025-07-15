@@ -102,7 +102,11 @@ int	check_file(char **files, t_map_data *map)
 		free(files);
 		return (1);
 	}
-	parse_colors(map);
+	if (!parse_colors(map))
+	{
+		free_map_data(map);
+		return (1);
+	}
 	assign_direction(&map->player);
 	return (0);
 }
