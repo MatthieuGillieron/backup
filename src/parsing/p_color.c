@@ -6,13 +6,11 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:15:00 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/06/29 09:43:46 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/15 22:57:43 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
-
-
 
 static void	free_split(char **split)
 {
@@ -29,7 +27,7 @@ static void	free_split(char **split)
 
 static int	is_valid_number(char *str)
 {
-	int	i;
+	int		i;
 	char	*trimmed;
 
 	trimmed = ft_strtrim(str, " \t\n\r");
@@ -55,7 +53,8 @@ static int	is_valid_number(char *str)
 
 static int	parse_rgb(char **rgb_split, int *r, int *g, int *b)
 {
-	if (!is_valid_number(rgb_split[0]) || !is_valid_number(rgb_split[1]) || !is_valid_number(rgb_split[2]))
+	if (!is_valid_number(rgb_split[0]) || !is_valid_number(rgb_split[1]) \
+	|| !is_valid_number(rgb_split[2]))
 		return (0);
 	*r = ft_atoi(rgb_split[0]);
 	*g = ft_atoi(rgb_split[1]);
@@ -97,17 +96,9 @@ int	parse_colors(t_map_data *data)
 {
 	data->colors.set_floor = rgb_to_hex(data->colors.floor);
 	if (data->colors.set_floor == -1)
-	{
-		printf("\033[1;91mErreur: Couleurs RGB invalides\033[0m\n");
-		printf("\033[1;94mExemple: \033[1;92mF 220,100,0\033[0m\n");
 		return (0);
-	}
 	data->colors.set_ceiling = rgb_to_hex(data->colors.ceiling);
 	if (data->colors.set_ceiling == -1)
-	{
-		printf("\033[1;91mErreur: Couleurs RGB invalides\033[0m\n");
-		printf("\033[1;94mExemple: \033[1;92mC 60,140,70\033[0m\n");
 		return (0);
-	}
 	return (1);
 }

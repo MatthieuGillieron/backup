@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:15:08 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/01 11:01:54 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/15 22:08:29 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,19 @@ void	game_setup(int ac, char **av, t_game *game)
 	ft_bzero(&map, sizeof(map));
 	ft_bzero(game, sizeof(*game));
 	if (ac != 2)
-	{
-		printf("\033[1;91mErreur: Nombre d'arguments incorrect !\033[0m\n");
-		printf("\033[1;96mUsage: \033[1;93m%s \033[1;92mmap/map-name.cub\033[0m\n", av[0]);
-		exit(1);
-	}
+		print_error(ERR_ARGS, NULL);
 	files = open_map(av[1]);
 	if (!files)
-		exit(1);
+		print_error(ERR_MAP_OPEN, NULL);
 	if (check_file(files, &map))
 	{
-		int i = 0;
-		while (files[i])
-			free(files[i++]);
-		free(files);
-		exit(1);
+		free_files(files);
+		print_error(ERR_MAP_INVALID, NULL);
 	}
-	int i = 0;
-	while (files[i])
-		free(files[i++]);
-	free(files);
-	game->map_data = map;
-	game->color.set_floor = map.colors.set_floor;
-	game->color.set_ceiling = map.colors.set_ceiling;
-	game->player = map.player;
-	game->map = map.map;
+	free_files(files);
+	setup_game_data(game, &map);
 	if (!init_game(game))
-		exit(1);
+		print_error(ERR_MLX_INIT, game);
 }
 
 void	game_loop(t_game *game)

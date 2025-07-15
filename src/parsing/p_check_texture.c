@@ -19,7 +19,7 @@ static int	check_extension(const char *path)
 	ext = ft_strrchr(path, '.');
 	if (!ext || ft_strncmp(ext, ".xpm", 5) != 0)
 	{
-		write(2, "Error\nInvalid texture extension\n", 33);
+		print_error("Invalid texture extension", NULL);
 		return (0);
 	}
 	return (1);
@@ -34,7 +34,7 @@ static int	try_load_image(const char *path, void *mlx)
 	img = mlx_xpm_file_to_image(mlx, (char *)path, &w, &h);
 	if (!img)
 	{
-		write(2, "Error\nFailed to load texture\n", 30);
+		print_error(ERR_TEXTURE_LOAD, NULL);
 		return (0);
 	}
 	mlx_destroy_image(mlx, img);
@@ -51,7 +51,7 @@ int	is_valid_texture(const char *path, void *mlx)
 	fd = open(new_path, O_RDONLY);
 	if (fd < 0)
 	{
-		write(2, "Error\nCannot open texture file\n", 32);
+		print_error(ERR_TEXTURE_PATH, NULL);
 		free(new_path);
 		return (0);
 	}
@@ -85,25 +85,26 @@ int	check_file(char **files, t_map_data *map)
 
 	if (!split_sections(files, map))
 	{
-		printf("Error\nInvalid map format.\n");
+		print_error(ERR_MAP_INVALID, NULL);
 		free_map_data(map);
 		return (1);
 	}
 	if (!is_map_enclosed(map->map, &map->player))
 	{
-		printf("Map not good\n");
+		print_error(ERR_MAP_NOT_ENCLOSED, NULL);
 		return (1);
 	}
 	mlx = mlx_init();
 	if (!check_path(map, mlx))
 	{
-		printf("Error\nInvalid texture paths.\n");
+		print_error(ERR_TEXTURE_PATH, NULL);
 		free_map_data(map);
 		free(files);
 		return (1);
 	}
 	if (!parse_colors(map))
 	{
+		print_error(ERR_RGB_FORMAT, NULL);
 		free_map_data(map);
 		return (1);
 	}
