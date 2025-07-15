@@ -23,7 +23,6 @@ void	game_setup(int ac, char **av, t_game *game)
 	{
 		printf("\033[1;91mErreur: Nombre d'arguments incorrect !\033[0m\n");
 		printf("\033[1;96mUsage: \033[1;93m%s \033[1;92mmap/map-name.cub\033[0m\n", av[0]);
-		printf("\033[1;94mExemple: \033[1;93m%s \033[1;92mmap/test.cub\033[0m\n", av[0]);
 		exit(1);
 	}
 	files = open_map(av[1]);
