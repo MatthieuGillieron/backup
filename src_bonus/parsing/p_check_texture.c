@@ -104,5 +104,6 @@ int	check_file(char **files, t_map_data *map)
 	}
 	parse_colors(map);
 	assign_direction(&map->player);
+	free(mlx);
 	return (0);
 }

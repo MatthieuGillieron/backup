@@ -12,25 +12,6 @@
 
 #include "../includes/cube3d.h"
 
-static void	free_files(char **files)
-{
-	int	i;
-
-	i = 0;
-	while (files[i])
-		free(files[i++]);
-	free(files);
-}
-
-static void	setup_game_data(t_game *game, t_map_data *map)
-{
-	game->map_data = *map;
-	game->color.set_floor = map->colors.set_floor;
-	game->color.set_ceiling = map->colors.set_ceiling;
-	game->player = map->player;
-	game->map = map->map;
-}
-
 void	game_setup(int ac, char **av, t_game *game)
 {
 	char		**files;

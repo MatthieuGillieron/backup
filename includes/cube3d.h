@@ -21,6 +21,8 @@
 # include <float.h>
 # include "../mlx/mlx.h"
 # include "errors.h"
+# include "../mlx_linux/mlx.h"
+
 
 # define FOV 1.0472
 # define MOVE_SPEED 0.03
@@ -269,6 +271,8 @@ void		render_minimap(t_game *game);
 //-----------*** utils ***-----------------
 void		print_error(char *error_msg, t_game *game);
 void		free_map_data(t_map_data *data);
+void		cleanup_mlx_display(void *mlx_ptr);
+void		cleanup_mlx_display(void *mlx_ptr);
 void		assign_direction(t_player *player);
 void		draw_player_minimap(t_minimap *mm);
 void		draw_line(t_line_params *line);
