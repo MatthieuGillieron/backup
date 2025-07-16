@@ -79,19 +79,19 @@ int	check_path(t_map_data *data, void *mlx_ptr)
 	return (1);
 }
 
-int	check_file(char **files, t_map_data *map, char **file_ptr)
+int	check_file(char **files, t_map_data *map)
 {
 	void	*mlx;
 
 	if (!split_sections(files, map))
 		return (1);
 	if (!is_map_enclosed(map->map, &map->player))
-		cleanup_and_exit(ERR_MAP_NOT_ENCLOSED, *file_ptr, map);
+		cleanup_and_exit(ERR_MAP_NOT_ENCLOSED, files, map);
 	mlx = mlx_init();
 	if (!check_path(map, mlx))
-		cleanup_and_exit(ERR_TEXTURE_PATH, *file_ptr, map);
+		cleanup_and_exit(ERR_TEXTURE_PATH, files, map);
 	if (!parse_colors(map))
-		cleanup_and_exit(ERR_RGB_FORMAT, *file_ptr, map);
+		cleanup_and_exit(ERR_RGB_FORMAT, files, map);
 	assign_direction(&map->player);
 	return (0);
 }

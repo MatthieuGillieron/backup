@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:15:08 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/15 23:25:25 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/16 11:01:50 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	game_setup(int ac, char **av, t_game *game)
 	files = open_map(av[1]);
 	if (!files)
 		print_error(ERR_MAP_OPEN, NULL);
-	if (check_file(files, &map, &files))
+	if (check_file(files, &map))
 	{
 		free_files(files);
 		exit(1);

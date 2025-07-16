@@ -46,6 +46,7 @@ MANDATORY_SRC_FILES = main.c \
 				utils/u_dir_player.c \
 				utils/u_move_player.c \
 				utils/error.c \
+				utils/cleanup_and_exit.c \
 				print.c \
 
 SRCS        = $(addprefix $(SRCDIR)/, $(MANDATORY_SRC_FILES))

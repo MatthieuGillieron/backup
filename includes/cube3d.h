@@ -250,7 +250,7 @@ int			assign_texture_or_color(char *line, t_map_data *data, int *found);
 int			is_map_enclosed(char **map, t_player *player);
 int			is_player(char c);
 int			is_playable(char c);
-int			check_file(char **files, t_map_data *map, char **file_ptr);
+int			check_file(char **files, t_map_data *map);
 int			rgb_to_hex(char *rgb_str);
 int			parse_colors(t_map_data *data);
 int			is_line_empty(const char *line);
