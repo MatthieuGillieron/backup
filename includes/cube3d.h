@@ -250,7 +250,7 @@ int			assign_texture_or_color(char *line, t_map_data *data, int *found);
 int			is_map_enclosed(char **map, t_player *player);
 int			is_player(char c);
 int			is_playable(char c);
-int			check_file(char **files, t_map_data *map);
+int			check_file(char **files, t_map_data *map, char **file_ptr);
 int			rgb_to_hex(char *rgb_str);
 int			parse_colors(t_map_data *data);
 int			is_line_empty(const char *line);
@@ -270,6 +270,7 @@ void		render_minimap(t_game *game);
 
 //-----------*** utils ***-----------------
 void		print_error(char *error_msg, t_game *game);
+void		cleanup_and_exit(char *error_msg, char **files, t_map_data *map);
 void		free_map_data(t_map_data *data);
 void		cleanup_mlx_display(void *mlx_ptr);
 void		cleanup_mlx_display(void *mlx_ptr);

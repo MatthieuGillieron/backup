@@ -43,7 +43,7 @@ void	game_setup(int ac, char **av, t_game *game)
 	files = open_map(av[1]);
 	if (!files)
 		print_error(ERR_MAP_OPEN, NULL);
-	if (check_file(files, &map))
+	if (check_file(files, &map, &files))
 	{
 		free_files(files);
 		exit(1);

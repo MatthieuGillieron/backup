@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 10:45:11 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/16 10:25:59 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/16 10:51:25 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,39 +79,19 @@ int	check_path(t_map_data *data, void *mlx_ptr)
 	return (1);
 }
 
-int	check_file(char **files, t_map_data *map)
+int	check_file(char **files, t_map_data *map, char **file_ptr)
 {
 	void	*mlx;
 
 	if (!split_sections(files, map))
-	{
-		print_error(ERR_MAP_INVALID, NULL);
-		free_map_data(map);
 		return (1);
-	}
 	if (!is_map_enclosed(map->map, &map->player))
-	{
-		print_error(ERR_MAP_NOT_ENCLOSED, NULL);
-		free_map_data(map);
-		return (1);
-	}
+		cleanup_and_exit(ERR_MAP_NOT_ENCLOSED, *file_ptr, map);
 	mlx = mlx_init();
 	if (!check_path(map, mlx))
-	{
-		free_map_data(map);
-		free(files);
-		free(mlx);
-		print_error(ERR_TEXTURE_PATH, NULL);
-		return (1);
-	}
+		cleanup_and_exit(ERR_TEXTURE_PATH, *file_ptr, map);
 	if (!parse_colors(map))
-	{
-		free(mlx);
-		free_map_data(map);
-		print_error(ERR_RGB_FORMAT, NULL);
-		return (1);
-	}
+		cleanup_and_exit(ERR_RGB_FORMAT, *file_ptr, map);
 	assign_direction(&map->player);
-	free(mlx);
 	return (0);
 }
