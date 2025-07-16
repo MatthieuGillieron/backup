@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:23:26 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/15 22:59:20 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/16 10:21:13 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,33 @@ int	split_sections(char **lines, t_map_data *data)
 
 	i = 0;
 	if (check_header_lines(lines, data, &i) == -1)
+	{
+		free_map_data(data);
 		return (0);
+	}
 	map_start = find_map_start(lines, i);
 	if (map_start < 0)
+	{
+		free_map_data(data);
 		return (0);
+	}
 	if (!check_blank_lines_between(lines, i, map_start))
+	{
+		free_map_data(data);
 		return (0);
+	}
 	if (!copy_map(lines, data, map_start))
 		return (0);
 	if (!is_data_complete(data))
+	{
+		free_map_data(data);
 		return (0);
+	}
 	if (!check_extra_lines_after_map(lines, map_start, data))
+	{
+		free_map_data(data);
 		return (0);
+	}
 	return (1);
 }
 
@@ -113,7 +128,10 @@ char	**open_map(char *map)
 		return (NULL);
 	line = malloc(sizeof(char *) * 256);
 	if (!line)
+	{
+		close(fd);
 		return (NULL);
+	}
 	current = get_next_line(fd);
 	i = 0;
 	while (current != NULL && i < 256)
@@ -124,5 +142,6 @@ char	**open_map(char *map)
 	}
 	line[i] = NULL;
 	close(fd);
+	get_next_line(-42);
 	return (line);
 }

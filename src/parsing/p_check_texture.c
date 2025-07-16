@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 10:45:11 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/06/29 16:20:30 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/16 10:20:28 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	check_file(char **files, t_map_data *map)
 	if (!is_map_enclosed(map->map, &map->player))
 	{
 		print_error(ERR_MAP_NOT_ENCLOSED, NULL);
+		free_map_data(map);
 		return (1);
 	}
 	mlx = mlx_init();
