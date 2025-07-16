@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   e_window.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
+/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:06:51 by mg                #+#    #+#             */
-/*   Updated: 2025/07/16 10:23:47 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/16 10:57:25 by cosmos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	close_window(t_game *game)
 {
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
 	if (game->textures.north.img)
 		mlx_destroy_image(game->mlx, game->textures.north.img);
 	if (game->textures.south.img)
@@ -25,7 +27,9 @@ int	close_window(t_game *game)
 	if (game->img.img)
 		mlx_destroy_image(game->mlx, game->img.img);
 	free_map_data(&game->map_data);
-	mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
+		mlx_destroy_display(game->mlx);
+	//free(game->mlx);
 	exit(0);
 }
 

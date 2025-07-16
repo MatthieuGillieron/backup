@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_check_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
+/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 10:45:11 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/16 10:51:25 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/16 10:45:15 by cosmos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	is_valid_texture(const char *path, void *mlx)
 	fd = open(new_path, O_RDONLY);
 	if (fd < 0)
 	{
-		print_error(ERR_TEXTURE_PATH, NULL);
+		//print_error(ERR_TEXTURE_PATH, NULL);
 		free(new_path);
 		return (0);
 	}
@@ -89,9 +89,19 @@ int	check_file(char **files, t_map_data *map)
 		cleanup_and_exit(ERR_MAP_NOT_ENCLOSED, files, map);
 	mlx = mlx_init();
 	if (!check_path(map, mlx))
+	{
+		mlx_destroy_display(mlx);
+		free(mlx);
 		cleanup_and_exit(ERR_TEXTURE_PATH, files, map);
+	}
 	if (!parse_colors(map))
+	{
+		mlx_destroy_display(mlx);
+		free(mlx);
 		cleanup_and_exit(ERR_RGB_FORMAT, files, map);
+	}
 	assign_direction(&map->player);
+	mlx_destroy_display(mlx);
+	free(mlx);
 	return (0);
 }
