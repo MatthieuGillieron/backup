@@ -146,5 +146,10 @@ char	**open_map(char *map)
 	line[i] = NULL;
 	close(fd);
 	get_next_line(-42);
+	if (i == 0)
+	{
+		free(line);
+		return (NULL);
+	}
 	return (line);
 }
