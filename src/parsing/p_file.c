@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:23:26 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/16 10:21:13 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/16 10:26:39 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,10 @@ int	split_sections(char **lines, t_map_data *data)
 		return (0);
 	}
 	if (!copy_map(lines, data, map_start))
+	{
+		free_map_data(data);
 		return (0);
+	}
 	if (!is_data_complete(data))
 	{
 		free_map_data(data);

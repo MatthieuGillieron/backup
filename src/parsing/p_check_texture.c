@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 10:45:11 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/16 10:20:28 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/16 10:25:59 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,17 @@ int	check_file(char **files, t_map_data *map)
 	mlx = mlx_init();
 	if (!check_path(map, mlx))
 	{
-		print_error(ERR_TEXTURE_PATH, NULL);
 		free_map_data(map);
 		free(files);
+		free(mlx);
+		print_error(ERR_TEXTURE_PATH, NULL);
 		return (1);
 	}
 	if (!parse_colors(map))
 	{
-		print_error(ERR_RGB_FORMAT, NULL);
+		free(mlx);
 		free_map_data(map);
+		print_error(ERR_RGB_FORMAT, NULL);
 		return (1);
 	}
 	assign_direction(&map->player);

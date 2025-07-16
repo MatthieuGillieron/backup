@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:35:38 by mg                #+#    #+#             */
-/*   Updated: 2025/06/30 09:00:27 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/16 10:24:35 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int	init_game(t_game *game)
 		return (0);
 	mlx_hook(game->win, 17, 0, close_window, game);
 	if (!load_textures(game))
-		return (0);
+		print_error("Error\nFailed to load textures\n", game);
 	return (1);
 }
