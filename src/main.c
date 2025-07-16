@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
+/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:15:08 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/16 11:01:50 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/16 10:29:49 by cosmos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	game_setup(int ac, char **av, t_game *game)
 		print_error(ERR_MAP_OPEN, NULL);
 	if (check_file(files, &map))
 	{
+		get_next_line(-42);
 		free_files(files);
 		exit(1);
 	}
