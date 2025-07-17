@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_check_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
+/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 10:45:11 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 11:51:20 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 11:37:57 by cosmos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,39 +78,29 @@ int	check_path(t_map_data *data, void *mlx_ptr)
 		return (0);
 	return (1);
 }
-
 int	check_file(char **files, t_map_data *map)
 {
 	void	*mlx;
 
 	if (!split_sections(files, map))
-	{
-		printf("Error\nInvalid map format.\n");
-		free_map_data(map);
 		return (1);
-	}
 	if (!is_map_enclosed(map->map, &map->player))
-	{
-		printf("Map not good\n");
-		return (1);
-	}
+		cleanup_and_exit(ERR_MAP_NOT_ENCLOSED, files, map);
 	mlx = mlx_init();
 	if (!check_path(map, mlx))
 	{
-		printf("Error\nInvalid texture paths.\n");
-		free_map_data(map);
-		free(files);
-		return (1);
+		mlx_destroy_display(mlx);
+		free(mlx);
+		cleanup_and_exit(ERR_TEXTURE_PATH, files, map);
 	}
 	if (!parse_colors(map))
 	{
-		printf("Error\nInvalid color format.\n");
-		free_map_data(map);
-		free(files);
+		mlx_destroy_display(mlx);
 		free(mlx);
-		return (1);
+		cleanup_and_exit(ERR_RGB_FORMAT, files, map);
 	}
 	assign_direction(&map->player);
+	mlx_destroy_display(mlx);
 	free(mlx);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_color.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
+/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:15:00 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/06/29 09:43:46 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 11:32:23 by cosmos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,13 @@ int	rgb_to_hex(char *rgb_str)
 	free_split(rgb_split);
 	return ((r << 16) | (g << 8) | b);
 }
-
-void	parse_colors(t_map_data *data)
+int	parse_colors(t_map_data *data)
 {
 	data->colors.set_floor = rgb_to_hex(data->colors.floor);
+	if (data->colors.set_floor == -1)
+		return (0);
 	data->colors.set_ceiling = rgb_to_hex(data->colors.ceiling);
+	if (data->colors.set_ceiling == -1)
+		return (0);
+	return (1);
 }
