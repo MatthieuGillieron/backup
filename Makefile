@@ -37,6 +37,7 @@ MANDATORY_SRC_FILES = main.c \
 				parsing/p_map.c \
 				parsing/p_texture.c \
 				parsing/p_valid_map.c \
+				parsing/p_file_utils.c \
 				raycasting/r_cast.c \
 				render/r_background.c \
 				render/r_wall.c \
@@ -70,6 +71,7 @@ BONUS_SRCS = \
 	src_bonus/parsing/p_map.c \
 	src_bonus/parsing/p_texture.c \
 	src_bonus/parsing/p_valid_map.c \
+	src_bonus/parsing/p_rgb.c \
 	src_bonus/raycasting/r_cast.c \
 	src_bonus/render/r_background.c \
 	src_bonus/render/r_wall.c \

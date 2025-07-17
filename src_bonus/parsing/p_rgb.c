@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_rgb.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 15:45:38 by mg                #+#    #+#             */
-/*   Updated: 2025/07/17 15:47:31 by mg               ###   ########.fr       */
+/*   Updated: 2025/07/17 14:57:02 by cosmos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static int	validate_rgb(int r, int g, int b)
 {
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 	{
-		printf("\033[1;91mErreur: Valeurs RGB invalides
+		printf("\033[1;91mErreur: Valeurs RGB invalides \
 			(%d, %d, %d)\033[0m\n", r, g, b);
-		printf("\033[1;96m
+		printf("\033[1;96m \
 			Les valeurs RGB doivent être entre 0 et 255\033[0m\n");
 		printf("\033[1;94mExemple: \033[1;92mF 220,100,0\033[0m\n");
 		return (0);
