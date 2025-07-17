@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   u_cleanup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
+/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:07:01 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 16:36:40 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 15:46:41 by cosmos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	free_map_data(t_map_data *data)
 	free(data->textures.we);
 	free(data->textures.ea);
 	free(data->colors.floor);
+	free(data->textures.door);
 	free(data->colors.ceiling);
 	if (data->map)
 	{
