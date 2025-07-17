@@ -6,7 +6,7 @@
 /*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:06:51 by mg                #+#    #+#             */
-/*   Updated: 2025/07/17 15:48:40 by cosmos           ###   ########.fr       */
+/*   Updated: 2025/07/17 15:51:52 by cosmos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 int	close_window(t_game *game)
 {
-	free_map_data(&game->map_data);
 	free_door_states(game->door_states, game->map);
+	free_map_data(&game->map_data);
+	
 	if (game->textures.north.img)
 		mlx_destroy_image(game->mlx, game->textures.north.img);
 	if (game->textures.south.img)
