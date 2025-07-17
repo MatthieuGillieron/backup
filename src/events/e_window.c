@@ -6,7 +6,7 @@
 /*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:06:51 by mg                #+#    #+#             */
-/*   Updated: 2025/07/16 10:57:25 by cosmos           ###   ########.fr       */
+/*   Updated: 2025/07/17 10:38:23 by cosmos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	close_window(t_game *game)
 {
-	if (game->win)
-		mlx_destroy_window(game->mlx, game->win);
+	free_map_data(&game->map_data);
 	if (game->textures.north.img)
 		mlx_destroy_image(game->mlx, game->textures.north.img);
 	if (game->textures.south.img)
@@ -24,12 +23,13 @@ int	close_window(t_game *game)
 		mlx_destroy_image(game->mlx, game->textures.east.img);
 	if (game->textures.west.img)
 		mlx_destroy_image(game->mlx, game->textures.west.img);
-	if (game->img.img)
-		mlx_destroy_image(game->mlx, game->img.img);
-	free_map_data(&game->map_data);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
+	{
 		mlx_destroy_display(game->mlx);
-	//free(game->mlx);
+		free(game->mlx);
+	}
 	exit(0);
 }
 
