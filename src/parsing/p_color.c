@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_color.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:15:00 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/15 22:57:43 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 15:20:41 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static int	is_valid_number(char *str)
 
 static int	parse_rgb(char **rgb_split, int *r, int *g, int *b)
 {
-	if (!is_valid_number(rgb_split[0]) || !is_valid_number(rgb_split[1]) \
-	|| !is_valid_number(rgb_split[2]))
+	if (!is_valid_number(rgb_split[0]) || !is_valid_number(rgb_split[1])
+		|| !is_valid_number(rgb_split[2]))
 		return (0);
 	*r = ft_atoi(rgb_split[0]);
 	*g = ft_atoi(rgb_split[1]);

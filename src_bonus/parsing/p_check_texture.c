@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_check_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 10:45:11 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 11:37:57 by cosmos           ###   ########.fr       */
+/*   Updated: 2025/07/17 15:21:46 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	check_path(t_map_data *data, void *mlx_ptr)
 		return (0);
 	return (1);
 }
+
 int	check_file(char **files, t_map_data *map)
 {
 	void	*mlx;

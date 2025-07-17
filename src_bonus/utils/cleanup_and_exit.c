@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup_and_exit.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 00:00:00 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/01/27 00:00:00 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 15:23:54 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void	cleanup_and_exit(char *error_msg, char **files, t_map_data *map)
 {
+	int	i;
+
 	if (files)
 	{
-		int i = 0;
+		i = 0;
 		while (files[i])
 			free(files[i++]);
 		free(files);

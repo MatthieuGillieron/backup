@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_check_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 10:45:11 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/16 10:45:15 by cosmos           ###   ########.fr       */
+/*   Updated: 2025/07/17 15:13:24 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	is_valid_texture(const char *path, void *mlx)
 	fd = open(new_path, O_RDONLY);
 	if (fd < 0)
 	{
-		//print_error(ERR_TEXTURE_PATH, NULL);
 		free(new_path);
 		return (0);
 	}

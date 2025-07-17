@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:15:08 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/01 11:33:44 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 15:21:17 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	game_setup(int ac, char **av, t_game *game)
 	if (ac != 2)
 	{
 		printf("\033[1;91mErreur: Nombre d'arguments incorrect !\033[0m\n");
-		printf("\033[1;96mUsage: \033[1;93m%s \033[1;92mmap/map-name.cub\033[0m\n", av[0]);
+		printf("\033[1;96mUsage: \033[1;93m%s \033
+			[1;92mmap/map-name.cub\033[0m\n", av[0]);
 		exit(1);
 	}
 	files = open_map(av[1]);
