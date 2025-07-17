@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:06:51 by mg                #+#    #+#             */
-/*   Updated: 2025/07/17 16:29:26 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 16:31:24 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void try_open_door(t_game *game)
 	if (game->map[ty][tx] == 'D' && game->door_states[ty][tx].open == 0) {
 		game->door_states[ty][tx].open = 1;
 		game->door_states[ty][tx].open_time = time(NULL);
+		game->map[ty][tx] = '0'; // Mark as open in the map
 		printf("Door at (%d, %d) opened!\n", tx, ty);
 	}
 }

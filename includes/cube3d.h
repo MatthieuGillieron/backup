@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:58:45 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 16:28:28 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 16:32:34 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,8 @@ typedef struct s_door_state {
 } t_door_state;
 
 //-----------[ PROTOTYPES ]----------------
-
+void	move_right(t_game *game);
+void	move_left(t_game *game);
 //-----------*** events ***----------------
 int			close_window(t_game *game);
 int			key_press(int keycode, t_game *game);

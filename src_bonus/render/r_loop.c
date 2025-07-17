@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:43:53 by mg                #+#    #+#             */
-/*   Updated: 2025/07/17 16:22:37 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 16:31:30 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ static void update_doors(t_game *game)
 	time_t now = time(NULL);
 	for (i = 0; i < h; i++) {
 		for (j = 0; j < w; j++) {
-			if (game->map[i][j] == 'D' && game->door_states[i][j].open) {
+			if (game->door_states && game->door_states[i][j].open) {
 				if (now - game->door_states[i][j].open_time >= 3) {
 					game->door_states[i][j].open = 0;
 					game->door_states[i][j].open_time = 0;
+					game->map[i][j] = 'D'; // Mark as closed in the map
 				}
 			}
 		}

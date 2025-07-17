@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   e_window.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:06:51 by mg                #+#    #+#             */
-/*   Updated: 2025/07/17 10:38:23 by cosmos           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:32:00 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ void	update_movement(t_game *game)
 	if (game->keys.backward)
 		move_backward(game);
 	if (game->keys.left)
-		rotate_player(game, -1);
+		move_left(game);
 	if (game->keys.right)
-		rotate_player(game, 1);
+		move_right(game);
 }
 
 int	mouse_motion(int x, int y, t_game *game)
