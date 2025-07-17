@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:58:45 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 15:41:05 by mg               ###   ########.fr       */
+/*   Updated: 2025/07/17 15:43:10 by cosmos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 //# include "../mlx/mlx.h"
 # include "errors.h"
 # include "../mlx_linux/mlx.h"
+# include <time.h>
 
 
 # define FOV 1.0472
@@ -46,6 +47,7 @@
 #  define KEY_LEFT 65361
 #  define KEY_RIGHT 65363
 #  define KEY_ESC 65307
+#  define KEY_SPACE 32
 # else
 #  define KEY_W 13
 #  define KEY_S 1
@@ -54,6 +56,7 @@
 #  define KEY_LEFT 123
 #  define KEY_RIGHT 124
 #  define KEY_ESC 53
+#  define KEY_SPACE 49
 # endif
 
 //--------[ STRUCTURE ]----------
@@ -62,6 +65,7 @@ typedef struct s_texture {
 	char	*so;
 	char	*we;
 	char	*ea;
+	char	*door; // Door texture path
 }	t_texture;
 
 typedef struct s_color {
@@ -109,6 +113,7 @@ typedef struct s_textures
 	t_img	south;
 	t_img	east;
 	t_img	west;
+	t_img	door; // Door texture image
 }	t_textures;
 
 typedef struct s_key_state {
@@ -134,6 +139,7 @@ typedef struct s_game
 	t_textures	textures;
 	t_key_state	keys;
 	int			collision_active;
+	struct s_door_state **door_states; // 2D array for door states
 }	t_game;
 
 typedef struct s_ray_pos
@@ -219,8 +225,17 @@ typedef struct s_walkable
 	int			found;
 }	t_walkable;
 
-//-----------[ PROTOTYPES ]----------------
+// Door state structure for each door tile
+typedef struct s_door_state {
+	int open; // 0 = closed, 1 = open
+	time_t open_time; // time when door was opened
+} t_door_state;
 
+//-----------[ PROTOTYPES ]----------------
+void	move_right(t_game *game);
+void	move_left(t_game *game);
+void free_door_states(struct s_door_state **door_states, char **map);
+int is_door(char c);
 //-----------*** events ***----------------
 int			close_window(t_game *game);
 int			key_press(int keycode, t_game *game);

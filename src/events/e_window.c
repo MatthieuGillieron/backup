@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   e_window.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:06:51 by mg                #+#    #+#             */
-/*   Updated: 2025/07/17 10:38:23 by cosmos           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:58:56 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,25 @@ int	key_press(int keycode, t_game *game)
 	else if (keycode == KEY_S)
 		game->keys.backward = 1;
 	else if (keycode == KEY_A)
-		game->keys.left = 1;
-	else if (keycode == KEY_D)
-		game->keys.right = 1;
-	else if (keycode == KEY_LEFT)
+	{
 		game->keys.rotate_left = 1;
-	else if (keycode == KEY_RIGHT)
+		rotate_player(game, -1);
+	}
+	else if (keycode == KEY_D)
+	{
 		game->keys.rotate_right = 1;
+		rotate_player(game, 1);
+	}
+	else if (keycode == KEY_LEFT)
+	{
+		game->keys.rotate_left = 1;
+		rotate_player(game, -1);
+	}
+	else if (keycode == KEY_RIGHT)
+	{
+		game->keys.rotate_right = 1;
+		rotate_player(game, 1);
+	}
 	return (0);
 }
 
@@ -59,9 +71,9 @@ int	key_release(int keycode, t_game *game)
 	else if (keycode == KEY_S)
 		game->keys.backward = 0;
 	else if (keycode == KEY_A)
-		game->keys.left = 0;
+		game->keys.rotate_left = 0;
 	else if (keycode == KEY_D)
-		game->keys.right = 0;
+		game->keys.rotate_right = 0;
 	return (0);
 }
 
@@ -72,9 +84,9 @@ void	update_movement(t_game *game)
 	if (game->keys.backward)
 		move_backward(game);
 	if (game->keys.left)
-		rotate_player(game, -1);
+		move_left(game);
 	if (game->keys.right)
-		rotate_player(game, 1);
+		move_right(game);
 }
 
 int	mouse_motion(int x, int y, t_game *game)

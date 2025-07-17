@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   r_textures.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 10:09:38 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/02 09:05:05 by mg               ###   ########.fr       */
+/*   Updated: 2025/07/17 16:22:45 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 t_img	*get_wall_texture(t_game *game,
 	t_ray_hit *hit, double ray_angle)
 {
+	if (game->map[hit->map_y][hit->map_x] == 'D') {
+		if (game->door_states && game->door_states[hit->map_y][hit->map_x].open)
+			return NULL; // Open door: render as empty
+		return (&game->textures.door); // Closed door: render as door
+	}
 	while (ray_angle < 0)
 		ray_angle += 2 * M_PI;
 	while (ray_angle >= 2 * M_PI)

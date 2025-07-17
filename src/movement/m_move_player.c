@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   m_move_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 15:57:11 by mg                #+#    #+#             */
-/*   Updated: 2025/07/01 14:48:12 by mg               ###   ########.fr       */
+/*   Updated: 2025/07/17 16:29:01 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void	move_backward(t_game *game)
 	if (moved)
 		game->collision_active = 1;
 }
-/*
+
 void	move_left(t_game *game)
 {
 	double	new_x;
@@ -157,4 +157,4 @@ void	move_right(t_game *game)
 		game->player.x = new_x;
 		game->player.y = new_y;
 	}
-}*/
+}

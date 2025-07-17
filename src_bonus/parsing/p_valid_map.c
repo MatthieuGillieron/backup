@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_map_ok.c                                         :+:      :+:    :+:   */
+/*   p_valid_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:27:39 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/06/24 09:58:07 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 16:11:13 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	is_valid_surrounding(char **map, int y, int x)
 	int	len_down;
 	int	len_curr;
 
-	if (!is_playable(map[y][x]))
+	if (!is_playable(map[y][x]) && !is_door(map[y][x]))
 		return (1);
 	if (y == 0 || x == 0)
 		return (0);
@@ -43,7 +43,7 @@ static int	check_line(char *line, int *last_playable)
 	*last_playable = -1;
 	while (line[i])
 	{
-		if (is_playable(line[i]))
+		if (is_playable(line[i]) || is_door(line[i]))
 			*last_playable = i;
 		i++;
 	}
@@ -73,7 +73,7 @@ static int	check_map_line(char *line, int y, char **map, t_map_check *info)
 	}
 	if (last_index >= 0)
 	{
-		if (last_index + 1 >= len_line || line[last_index + 1] != '1')
+		if (last_index + 1 >= len_line || (line[last_index + 1] != '1' && line[last_index + 1] != 'D'))
 			return (0);
 	}
 	return (1);
