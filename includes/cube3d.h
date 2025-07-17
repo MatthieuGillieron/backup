@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:58:45 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 16:21:01 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 16:28:28 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 #  define KEY_LEFT 65361
 #  define KEY_RIGHT 65363
 #  define KEY_ESC 65307
+#  define KEY_SPACE 32
 # else
 #  define KEY_W 13
 #  define KEY_S 1
@@ -55,6 +56,7 @@
 #  define KEY_LEFT 123
 #  define KEY_RIGHT 124
 #  define KEY_ESC 53
+#  define KEY_SPACE 49
 # endif
 
 //--------[ STRUCTURE ]----------
