@@ -6,11 +6,13 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 17:34:42 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 16:19:27 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 16:22:15 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
+#include <time.h>
+extern t_game *g_game; // We'll set this global pointer in main.c for access
 
 int	cell_is_walkable(char **map, int x, int y)
 {
@@ -29,7 +31,9 @@ int	cell_is_walkable(char **map, int x, int y)
 		map_w++;
 	if (x < 0 || x >= map_w)
 		return (0);
-	if (map[y][x] == '1' || map[y][x] == 'D')
+	if (map[y][x] == '1')
+		return (0);
+	if (map[y][x] == 'D' && g_game && g_game->door_states[y][x].open == 0)
 		return (0);
 	return (1);
 }

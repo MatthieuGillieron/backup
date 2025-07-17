@@ -6,11 +6,12 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:06:51 by mg                #+#    #+#             */
-/*   Updated: 2025/07/17 12:28:34 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 16:22:29 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
+#include <time.h>
 
 int	close_window(t_game *game)
 {
@@ -33,6 +34,22 @@ int	close_window(t_game *game)
 	exit(0);
 }
 
+static void try_open_door(t_game *game)
+{
+	int px = (int)game->player.x;
+	int py = (int)game->player.y;
+	double dx = cos(game->player.angle);
+	double dy = sin(game->player.angle);
+	int tx = px + (dx > 0 ? 1 : (dx < 0 ? -1 : 0));
+	int ty = py + (dy > 0 ? 1 : (dy < 0 ? -1 : 0));
+	if (tx < 0 || ty < 0 || !game->map[ty] || tx >= (int)ft_strlen(game->map[ty]))
+		return;
+	if (game->map[ty][tx] == 'D' && game->door_states[ty][tx].open == 0) {
+		game->door_states[ty][tx].open = 1;
+		game->door_states[ty][tx].open_time = time(NULL);
+	}
+}
+
 int	key_press(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
@@ -49,6 +66,8 @@ int	key_press(int keycode, t_game *game)
 		game->keys.rotate_left = 1;
 	else if (keycode == KEY_RIGHT)
 		game->keys.rotate_right = 1;
+	else if (keycode == 49) // Spacebar on Mac
+		try_open_door(game);
 	return (0);
 }
 

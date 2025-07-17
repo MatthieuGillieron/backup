@@ -6,11 +6,30 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:43:53 by mg                #+#    #+#             */
-/*   Updated: 2025/07/01 11:08:07 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 16:22:37 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
+#include <time.h>
+
+static void update_doors(t_game *game)
+{
+	int h = 0, w = 0, i, j;
+	while (game->map[h]) h++;
+	while (game->map[0][w]) w++;
+	time_t now = time(NULL);
+	for (i = 0; i < h; i++) {
+		for (j = 0; j < w; j++) {
+			if (game->map[i][j] == 'D' && game->door_states[i][j].open) {
+				if (now - game->door_states[i][j].open_time >= 3) {
+					game->door_states[i][j].open = 0;
+					game->door_states[i][j].open_time = 0;
+				}
+			}
+		}
+	}
+}
 
 int	render_loop(void *param)
 {
@@ -21,6 +40,7 @@ int	render_loop(void *param)
 	t_ray_hit	hit;
 
 	game = (t_game *)param;
+	update_doors(game);
 	update_movement(game);
 	start_angle = game->player.angle - (FOV / 2);
 	game->img.img = mlx_new_image(game->mlx, game->win_w, game->win_h);

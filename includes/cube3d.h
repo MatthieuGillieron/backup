@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:58:45 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 16:05:02 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 16:21:01 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ typedef struct s_game
 	t_textures	textures;
 	t_key_state	keys;
 	int			collision_active;
+	struct s_door_state **door_states; // 2D array for door states
 }	t_game;
 
 typedef struct s_ray_pos
