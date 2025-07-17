@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 17:34:42 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/06/30 17:36:49 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 16:19:27 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	cell_is_walkable(char **map, int x, int y)
 		map_w++;
 	if (x < 0 || x >= map_w)
 		return (0);
-	if (map[y][x] == '1')
+	if (map[y][x] == '1' || map[y][x] == 'D')
 		return (0);
 	return (1);
 }
