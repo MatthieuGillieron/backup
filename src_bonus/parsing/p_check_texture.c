@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_check_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 10:45:11 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 15:21:46 by mg               ###   ########.fr       */
+/*   Updated: 2025/07/17 16:05:36 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int	check_path(t_map_data *data, void *mlx_ptr)
 	if (!is_valid_texture(data->textures.we, mlx_ptr))
 		return (0);
 	if (!is_valid_texture(data->textures.ea, mlx_ptr))
+		return (0);
+	if (data->textures.door && !is_valid_texture(data->textures.door, mlx_ptr))
 		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:57:53 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/06/24 09:58:59 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 16:05:28 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ int	is_player(char c)
 
 int	is_playable(char c)
 {
-	return (c == '0' || is_player(c));
+	return (c == '0' || is_player(c)); // 'D' is not walkable (closed door)
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:58:45 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 15:41:05 by mg               ###   ########.fr       */
+/*   Updated: 2025/07/17 16:05:02 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 //# include "../mlx/mlx.h"
 # include "errors.h"
 # include "../mlx_linux/mlx.h"
+# include <time.h>
 
 
 # define FOV 1.0472
@@ -62,6 +63,7 @@ typedef struct s_texture {
 	char	*so;
 	char	*we;
 	char	*ea;
+	char	*door; // Door texture path
 }	t_texture;
 
 typedef struct s_color {
@@ -109,6 +111,7 @@ typedef struct s_textures
 	t_img	south;
 	t_img	east;
 	t_img	west;
+	t_img	door; // Door texture image
 }	t_textures;
 
 typedef struct s_key_state {
@@ -218,6 +221,12 @@ typedef struct s_walkable
 	double		best_y;
 	int			found;
 }	t_walkable;
+
+// Door state structure for each door tile
+typedef struct s_door_state {
+	int open; // 0 = closed, 1 = open
+	time_t open_time; // time when door was opened
+} t_door_state;
 
 //-----------[ PROTOTYPES ]----------------
 
