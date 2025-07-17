@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 10:45:11 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/06/29 16:20:30 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 11:51:20 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,14 @@ int	check_file(char **files, t_map_data *map)
 		free(files);
 		return (1);
 	}
-	parse_colors(map);
+	if (!parse_colors(map))
+	{
+		printf("Error\nInvalid color format.\n");
+		free_map_data(map);
+		free(files);
+		free(mlx);
+		return (1);
+	}
 	assign_direction(&map->player);
 	free(mlx);
 	return (0);
