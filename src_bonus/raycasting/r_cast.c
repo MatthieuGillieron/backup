@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:36:04 by mg                #+#    #+#             */
-/*   Updated: 2025/07/17 16:06:42 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/17 16:15:42 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int	perform_dda(t_game *game, t_ray_pos *pos, t_ray_dir *dir, int *side)
 		if (pos->map_y < 0 || pos->map_x < 0 || !game->map[pos->map_y]
 			|| pos->map_x >= (int)ft_strlen(game->map[pos->map_y]))
 			hit = 1;
-		else if (game->map[pos->map_y][pos->map_x] == '1')
+		else if (game->map[pos->map_y][pos->map_x] == '1' || game->map[pos->map_y][pos->map_x] == 'D')
 			hit = 1;
 	}
 	return (hit);
