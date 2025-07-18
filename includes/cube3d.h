@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: magillie <magillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:58:45 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 15:43:10 by cosmos           ###   ########.fr       */
+/*   Updated: 2025/07/18 12:00:50 by magillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@
 # include <stdio.h> 
 # include <math.h>
 # include <float.h>
-//# include "../mlx/mlx.h"
 # include "errors.h"
 # include "../mlx_linux/mlx.h"
 # include <time.h>
-
 
 # define FOV 1.0472
 # define MOVE_SPEED 0.03
@@ -60,15 +58,17 @@
 # endif
 
 //--------[ STRUCTURE ]----------
-typedef struct s_texture {
+typedef struct s_texture
+{
 	char	*no;
 	char	*so;
 	char	*we;
 	char	*ea;
-	char	*door; // Door texture path
+	char	*door;
 }	t_texture;
 
-typedef struct s_color {
+typedef struct s_color
+{
 	char	*floor;
 	char	*ceiling;
 	int		set_floor;
@@ -83,7 +83,8 @@ typedef struct s_player
 	double	angle;
 }	t_player;
 
-typedef struct s_map_data {
+typedef struct s_map_data
+{
 	t_texture	textures;
 	t_color		colors;
 	t_player	player;
@@ -113,7 +114,7 @@ typedef struct s_textures
 	t_img	south;
 	t_img	east;
 	t_img	west;
-	t_img	door; // Door texture image
+	t_img	door;
 }	t_textures;
 
 typedef struct s_key_state {
@@ -127,19 +128,19 @@ typedef struct s_key_state {
 
 typedef struct s_game
 {
-	void		*mlx;
-	void		*win;
-	t_img		img;
-	int			win_w;
-	int			win_h;
-	t_map_data	map_data;
-	t_color		color;
-	t_player	player;
-	char		**map;
-	t_textures	textures;
-	t_key_state	keys;
-	int			collision_active;
-	struct s_door_state **door_states; // 2D array for door states
+	void				*mlx;
+	void				*win;
+	t_img				img;
+	int					win_w;
+	int					win_h;
+	t_map_data			map_data;
+	t_color				color;
+	t_player			player;
+	char				**map;
+	t_textures			textures;
+	t_key_state			keys;
+	int					collision_active;
+	struct s_door_state	**door_states;
 }	t_game;
 
 typedef struct s_ray_pos
@@ -225,17 +226,18 @@ typedef struct s_walkable
 	int			found;
 }	t_walkable;
 
-// Door state structure for each door tile
-typedef struct s_door_state {
-	int open; // 0 = closed, 1 = open
-	time_t open_time; // time when door was opened
-} t_door_state;
+typedef struct s_door_state
+{
+	int		open;
+	time_t	open_time;
+}	t_door_state;
 
 //-----------[ PROTOTYPES ]----------------
-void	move_right(t_game *game);
-void	move_left(t_game *game);
-void free_door_states(struct s_door_state **door_states, char **map);
-int is_door(char c);
+void		move_right(t_game *game);
+void		move_left(t_game *game);
+void		free_door_states(struct s_door_state **door_states, char **map);
+int			is_door(char c);
+
 //-----------*** events ***----------------
 int			close_window(t_game *game);
 int			key_press(int keycode, t_game *game);
@@ -253,6 +255,7 @@ void		move_backward(t_game *game);
 void		move_left(t_game *game);
 void		move_right(t_game *game);
 void		rotate_player(t_game *game, int direction);
+int			find_nearest_walkable(char **map, double *x, double *y);
 
 //-----------*** parsing ***---------------
 char		**open_map(char *map);
