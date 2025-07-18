@@ -48,6 +48,7 @@ MANDATORY_SRC_FILES = main.c \
 				utils/u_move_player.c \
 				utils/error.c \
 				utils/cleanup_and_exit.c \
+				utils/u_find_walkable.c \
 				print.c \
 
 SRCS        = $(addprefix $(SRCDIR)/, $(MANDATORY_SRC_FILES))
@@ -84,6 +85,7 @@ BONUS_SRCS = \
 	src_bonus/movement/m_rotate_player.c \
 	src_bonus/utils/u_move_player.c \
 	src_bonus/utils/cleanup_and_exit.c \
+	src_bonus/utils/u_find_walkable.c \
 	src_bonus/utils/error.c \
 
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
