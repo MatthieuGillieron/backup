@@ -135,26 +135,46 @@ void	move_left(t_game *game)
 {
 	double	new_x;
 	double	new_y;
+	double	moved;
 
 	new_x = game->player.x + cos(game->player.angle - M_PI / 2) * MOVE_SPEED;
 	new_y = game->player.y + sin(game->player.angle - M_PI / 2) * MOVE_SPEED;
-	if (game->map[(int)new_y][(int)new_x] != '1')
+	moved = 0;
+	if (!game->collision_active)
+		move_player_no_collision(game, new_x, new_y, &moved);
+	else
 	{
-		game->player.x = new_x;
-		game->player.y = new_y;
+		if (is_walkable(game->map, new_x, game->player.y)
+			&& game->map[(int)game->player.y][(int)new_x] != '1')
+			game->player.x = new_x;
+		if (is_walkable(game->map, game->player.x, new_y)
+			&& game->map[(int)new_y][(int)game->player.x] != '1')
+			game->player.y = new_y;
 	}
+	if (moved)
+		game->collision_active = 1;
 }
 
 void	move_right(t_game *game)
 {
 	double	new_x;
 	double	new_y;
+	double	moved;
 
 	new_x = game->player.x + cos(game->player.angle + M_PI / 2) * MOVE_SPEED;
 	new_y = game->player.y + sin(game->player.angle + M_PI / 2) * MOVE_SPEED;
-	if (game->map[(int)new_y][(int)new_x] != '1')
+	moved = 0;
+	if (!game->collision_active)
+		move_player_no_collision(game, new_x, new_y, &moved);
+	else
 	{
-		game->player.x = new_x;
-		game->player.y = new_y;
+		if (is_walkable(game->map, new_x, game->player.y)
+			&& game->map[(int)game->player.y][(int)new_x] != '1')
+			game->player.x = new_x;
+		if (is_walkable(game->map, game->player.x, new_y)
+			&& game->map[(int)new_y][(int)game->player.x] != '1')
+			game->player.y = new_y;
 	}
+	if (moved)
+		game->collision_active = 1;
 }
