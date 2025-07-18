@@ -3,21 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   u_cleanup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:07:01 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 15:46:41 by cosmos           ###   ########.fr       */
+/*   Updated: 2025/07/18 11:22:01 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
 
-void free_door_states(struct s_door_state **door_states, char **map) {
-	int h = 0;
-	if (!door_states || !map) return;
-	while (map[h]) h++;
-	for (int i = 0; i < h; i++)
+void	free_door_states(struct s_door_state **door_states, char **map)
+{
+	int	h;
+	int	i;
+
+	h = 0;
+	if (!door_states || !map)
+		return ;
+	while (map[h])
+		h++;
+	i = 0;
+	while (i < h)
+	{
 		free(door_states[i]);
+		i++;
+	}
 	free(door_states);
 }
 
@@ -39,5 +49,4 @@ void	free_map_data(t_map_data *data)
 			free(data->map[i++]);
 		free(data->map);
 	}
-	// Note: door_states is not part of t_map_data, so free it elsewhere (see below)
 }

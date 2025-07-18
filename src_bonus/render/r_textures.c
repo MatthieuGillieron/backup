@@ -12,13 +12,13 @@
 
 #include "../../includes/cube3d.h"
 
-t_img	*get_wall_texture(t_game *game,
-	t_ray_hit *hit, double ray_angle)
+t_img	*get_wall_texture(t_game *game, t_ray_hit *hit, double ray_angle)
 {
-	if (game->map[hit->map_y][hit->map_x] == 'D') {
+	if (game->map[hit->map_y][hit->map_x] == 'D')
+	{
 		if (game->door_states && game->door_states[hit->map_y][hit->map_x].open)
-			return NULL; // Open door: render as empty
-		return (&game->textures.door); // Closed door: render as door
+			return (NULL);
+		return (&game->textures.door);
 	}
 	while (ray_angle < 0)
 		ray_angle += 2 * M_PI;

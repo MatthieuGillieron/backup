@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_texture.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 16:55:25 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 16:05:22 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/18 11:21:18 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static	int	assign_floor_ceiling(char *line, t_map_data *data, int *found)
 	return (0);
 }
 
-static int assign_door(char *line, t_map_data *data, int *found)
+static int	assign_door(char *line, t_map_data *data, int *found)
 {
 	if (ft_strncmp(line, "DOOR ", 5) == 0 && !data->textures.door)
 	{

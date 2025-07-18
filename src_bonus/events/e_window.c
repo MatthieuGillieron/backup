@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   e_window.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/07/17 17:04:20 by maximemarti      ###   ########.fr       */
+/*   Created: 2025/07/18 11:18:49 by mg                #+#    #+#             */
+/*   Updated: 2025/07/18 11:29:18 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../includes/cube3d.h"
+
 #include <time.h>
 
 int	close_window(t_game *game)
@@ -38,22 +38,40 @@ int	close_window(t_game *game)
 	exit(0);
 }
 
-static void try_open_door(t_game *game)
+static int	get_door_coords(t_game *game, int *tx, int *ty)
 {
-	double px = game->player.x;
-	double py = game->player.y;
-	double dx = cos(game->player.angle);
-	double dy = sin(game->player.angle);
-	double step = 0.5; // half-tile step forward
-	int tx = (int)(px + dx * step);
-	int ty = (int)(py + dy * step);
-	if (tx < 0 || ty < 0 || !game->map[ty] || tx >= (int)ft_strlen(game->map[ty]))
-		return;
-	if (game->map[ty][tx] == 'D' && game->door_states[ty][tx].open == 0) {
+	double	px;
+	double	py;
+	double	dx;
+	double	dy;
+	double	step;
+
+	px = game->player.x;
+	py = game->player.y;
+	dx = cos(game->player.angle);
+	dy = sin(game->player.angle);
+	step = 0.5;
+	*tx = (int)(px + dx * step);
+	*ty = (int)(py + dy * step);
+	if (*tx < 0 || *ty < 0 || !game->map[*ty])
+		return (0);
+	if (*tx >= (int)ft_strlen(game->map[*ty]))
+		return (0);
+	return (1);
+}
+
+static void	try_open_door(t_game *game)
+{
+	int	tx;
+	int	ty;
+
+	if (!get_door_coords(game, &tx, &ty))
+		return ;
+	if (game->map[ty][tx] == 'D' && game->door_states[ty][tx].open == 0)
+	{
 		game->door_states[ty][tx].open = 1;
 		game->door_states[ty][tx].open_time = time(NULL);
-		game->map[ty][tx] = '0'; // Mark as open in the map
-		printf("Door at (%d, %d) opened!\n", tx, ty);
+		game->map[ty][tx] = '0';
 	}
 }
 
@@ -92,40 +110,5 @@ int	key_release(int keycode, t_game *game)
 		game->keys.rotate_right = 0;
 	else if (keycode == KEY_SPACE)
 		try_open_door(game);
-	return (0);
-}
-
-void	update_movement(t_game *game)
-{
-	if (game->keys.forward)
-		move_forward(game);
-	if (game->keys.backward)
-		move_backward(game);
-	if (game->keys.left)
-		move_left(game);
-	if (game->keys.right)
-		move_right(game);
-	if (game->keys.rotate_left)
-		rotate_player(game, -1);
-	if (game->keys.rotate_right)
-		rotate_player(game, 1);
-}
-
-int	mouse_motion(int x, int y, t_game *game)
-{
-	static int	last_x = -1;
-	int			dx;
-
-	if (last_x != -1)
-	{
-		dx = x - last_x;
-		game->player.angle += dx * MOUSE_SENS;
-		if (game->player.angle >= 2 * M_PI)
-			game->player.angle -= 2 * M_PI;
-		if (game->player.angle < 0)
-			game->player.angle += 2 * M_PI;
-	}
-	last_x = x;
-	(void)y;
 	return (0);
 }

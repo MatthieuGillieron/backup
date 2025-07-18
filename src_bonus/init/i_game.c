@@ -14,18 +14,32 @@
 #include <stdlib.h>
 #include <time.h>
 
-static void init_door_states(t_game *game)
+static void	init_door_states(t_game *game)
 {
-	int h = 0, w = 0, i, j;
-	while (game->map[h]) h++;
-	while (game->map[0][w]) w++;
-	game->door_states = malloc(sizeof(t_door_state*) * h);
-	for (i = 0; i < h; i++) {
+	int	h;
+	int	w;
+	int	i;
+	int	j;
+
+	h = 0;
+	w = 0;
+	while (game->map[h])
+		h++;
+	while (game->map[0][w])
+		w++;
+	game->door_states = malloc(sizeof(t_door_state *) * h);
+	i = 0;
+	while (i < h)
+	{
 		game->door_states[i] = malloc(sizeof(t_door_state) * w);
-		for (j = 0; j < w; j++) {
+		j = 0;
+		while (j < w)
+		{
 			game->door_states[i][j].open = 0;
 			game->door_states[i][j].open_time = 0;
+			j++;
 		}
+		i++;
 	}
 }
 

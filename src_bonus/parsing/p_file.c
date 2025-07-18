@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_file.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:23:26 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 16:16:24 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/18 11:17:58 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	check_header_lines(char **lines, t_map_data *data, int *index)
 
 	found = 0;
 	i = 0;
-	while (lines[i] != NULL && found < 7) // allow up to 7
+	while (lines[i] != NULL && found < 7)
 	{
 		if (is_line_empty(lines[i]))
 		{
@@ -53,7 +53,7 @@ static int	check_header_lines(char **lines, t_map_data *data, int *index)
 		i++;
 	}
 	*index = i;
-	return (found == 6 || found == 7); // allow 6 or 7
+	return (found == 6 || found == 7);
 }
 
 static int	check_blank_lines_between(char **lines, int start, int end)

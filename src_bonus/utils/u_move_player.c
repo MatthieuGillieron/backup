@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   u_move_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 17:34:42 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 16:22:15 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/18 11:23:09 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
 #include <time.h>
-extern t_game *g_game; // We'll set this global pointer in main.c for access
+
+extern t_game	*g_game;
 
 int	cell_is_walkable(char **map, int x, int y)
 {

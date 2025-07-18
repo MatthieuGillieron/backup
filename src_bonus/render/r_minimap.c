@@ -13,7 +13,7 @@
 #include "../../includes/cube3d.h"
 
 static void	draw_minimap_cell(t_minimap *mm, int map_x, int map_y,
-			unsigned int color)
+	unsigned int color)
 {
 	int	px;
 	int	py;

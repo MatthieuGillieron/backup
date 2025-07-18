@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:15:08 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 16:22:21 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/18 11:22:53 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	game_loop(t_game *game)
 	mlx_loop(game->mlx);
 }
 
-t_game *g_game = NULL;
+t_game	*g_game = NULL;
 
 int	main(int ac, char **av)
 {

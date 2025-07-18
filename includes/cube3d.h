@@ -282,6 +282,7 @@ t_img		*get_wall_texture(t_game *game, \
 	t_ray_hit *hit, double ray_angle);
 int			get_texture_color(t_img *texture, int x, int y);
 void		render_minimap(t_game *game);
+void		update_doors(t_game *game);
 
 //-----------*** utils ***-----------------
 void		print_error(char *error_msg, t_game *game);

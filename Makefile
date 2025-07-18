@@ -57,11 +57,13 @@ OBJ_DIRS    = $(sort $(dir $(OBJS)))
 BONUS_SRCS = \
 	src_bonus/main.c \
 	src_bonus/movement/m_move_player.c \
+	src_bonus/movement/m_move_player_sides.c \
 	src_bonus/render/r_loop.c \
 	src_bonus/render/r_minimap.c \
 	src_bonus/utils/u_map_size.c \
 	src_bonus/utils/u_minimap.c \
 	src_bonus/events/e_window.c \
+	src_bonus/events/e_input.c \
 	src_bonus/init/i_game.c \
 	src_bonus/init/i_textures.c \
 	src_bonus/parsing/p_check_texture.c \
@@ -76,6 +78,7 @@ BONUS_SRCS = \
 	src_bonus/render/r_background.c \
 	src_bonus/render/r_wall.c \
 	src_bonus/render/r_textures.c \
+	src_bonus/render/r_doors.c \
 	src_bonus/utils/u_cleanup.c \
 	src_bonus/utils/u_dir_player.c \
 	src_bonus/movement/m_rotate_player.c \

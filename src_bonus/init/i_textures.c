@@ -64,7 +64,8 @@ int	load_textures(t_game *game)
 	if (!load_single_texture(game, &game->textures.west,
 			game->map_data.textures.we))
 		return (0);
-	if (game->map_data.textures.door) {
+	if (game->map_data.textures.door)
+	{
 		if (!load_single_texture(game, &game->textures.door,
 				game->map_data.textures.door))
 			return (0);

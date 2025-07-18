@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   r_cast.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:36:04 by mg                #+#    #+#             */
-/*   Updated: 2025/07/17 16:15:42 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/18 11:16:28 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	set_step_side_dist(t_ray_pos *pos, t_ray_dir *dir)
 }
 
 static void	init_ray_vars(t_game *game, double ray_angle,
-	t_ray_pos *pos, t_ray_dir *dir)
+				t_ray_pos *pos, t_ray_dir *dir)
 {
 	dir->ray_dir_x = cos(ray_angle);
 	dir->ray_dir_y = sin(ray_angle);
@@ -83,7 +83,8 @@ static int	perform_dda(t_game *game, t_ray_pos *pos, t_ray_dir *dir, int *side)
 		if (pos->map_y < 0 || pos->map_x < 0 || !game->map[pos->map_y]
 			|| pos->map_x >= (int)ft_strlen(game->map[pos->map_y]))
 			hit = 1;
-		else if (game->map[pos->map_y][pos->map_x] == '1' || game->map[pos->map_y][pos->map_x] == 'D')
+		else if (game->map[pos->map_y][pos->map_x] == '1'
+			|| game->map[pos->map_y][pos->map_x] == 'D')
 			hit = 1;
 	}
 	return (hit);
