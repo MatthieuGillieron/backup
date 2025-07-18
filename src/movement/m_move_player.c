@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   m_move_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
+/*   By: magillie <magillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 15:57:11 by mg                #+#    #+#             */
-/*   Updated: 2025/07/17 16:29:01 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/18 12:08:52 by magillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
 
-static int	find_nearest_walkable(char **map, double *x, double *y)
+int	find_nearest_walkable(char **map, double *x, double *y)
 {
 	t_walkable	w;
 	double		r;

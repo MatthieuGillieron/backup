@@ -6,7 +6,7 @@
 /*   By: magillie <magillie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 17:34:42 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/18 11:54:13 by magillie         ###   ########.fr       */
+/*   Updated: 2025/07/18 12:09:44 by magillie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,29 +96,4 @@ void	update_best_position(t_walkable *w, double r)
 		}
 		angle += M_PI / 16;
 	}
-}
-
-int	find_nearest_walkable(char **map, double *x, double *y)
-{
-	t_walkable	w;
-	double		r;
-
-	w.map = map;
-	w.cx = *x;
-	w.cy = *y;
-	w.best_dist = DBL_MAX;
-	w.found = 0;
-	r = 0.1;
-	while (r < 2.0 && !w.found)
-	{
-		update_best_position(&w, r);
-		r += 0.1;
-	}
-	if (w.found)
-	{
-		*x = w.best_x;
-		*y = w.best_y;
-		return (1);
-	}
-	return (0);
 }
