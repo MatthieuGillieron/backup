@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:58:45 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 15:43:10 by cosmos           ###   ########.fr       */
+/*   Updated: 2025/07/18 11:44:56 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,10 +295,10 @@ void		draw_line(t_line_params *line);
 int			get_direction(int start, int end);
 void		draw_circle(t_circle_params *circle);
 void		draw_pixel(t_game *game, int x, int y, unsigned int color);
-void		update_best_position(t_walkable *w, double r);
-int			is_walkable(char **map, double x, double y);
-int			check_area(char **map, t_bounds b);
-int			cell_is_walkable(char **map, int x, int y);
+void		update_best_position(t_walkable *w, double r, struct s_door_state **door_states);
+int			is_walkable(char **map, double x, double y, struct s_door_state **door_states);
+int			check_area(char **map, t_bounds b, struct s_door_state **door_states);
+int			cell_is_walkable(char **map, int x, int y, struct s_door_state **door_states);
 void		calc_map_size(char **map, int *width, int *height);
 
 //------------*** TEST ***-----------------

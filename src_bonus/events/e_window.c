@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/07/17 17:04:20 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/18 11:17:09 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	close_window(t_game *game)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
 	{
-		mlx_destroy_display(game->mlx);
+		//mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
 	exit(0);
@@ -113,19 +113,21 @@ void	update_movement(t_game *game)
 
 int	mouse_motion(int x, int y, t_game *game)
 {
-	static int	last_x = -1;
-	int			dx;
+    static int last_x = -1;
+    int dx;
 
-	if (last_x != -1)
-	{
-		dx = x - last_x;
-		game->player.angle += dx * MOUSE_SENS;
-		if (game->player.angle >= 2 * M_PI)
-			game->player.angle -= 2 * M_PI;
-		if (game->player.angle < 0)
-			game->player.angle += 2 * M_PI;
-	}
-	last_x = x;
-	(void)y;
-	return (0);
+    if (!game || game->player.angle != game->player.angle) // NaN check
+        return (0);
+    if (last_x != -1)
+    {
+        dx = x - last_x;
+        game->player.angle += dx * MOUSE_SENS;
+        if (game->player.angle >= 2 * M_PI)
+            game->player.angle -= 2 * M_PI;
+        if (game->player.angle < 0)
+            game->player.angle += 2 * M_PI;
+    }
+    last_x = x;
+    (void)y;
+    return (0);
 }

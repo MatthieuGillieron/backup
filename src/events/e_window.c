@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 10:06:51 by mg                #+#    #+#             */
-/*   Updated: 2025/07/18 08:01:39 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/18 11:25:49 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	close_window(t_game *game)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
 	{
-		mlx_destroy_display(game->mlx);
+		//mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
 	exit(0);

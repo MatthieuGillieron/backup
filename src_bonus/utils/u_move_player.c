@@ -6,15 +6,14 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 17:34:42 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 16:22:15 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/18 11:43:34 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
 #include <time.h>
-extern t_game *g_game; // We'll set this global pointer in main.c for access
 
-int	cell_is_walkable(char **map, int x, int y)
+int	cell_is_walkable(char **map, int x, int y, t_door_state **door_states)
 {
 	int	map_h;
 	int	map_w;
@@ -33,12 +32,12 @@ int	cell_is_walkable(char **map, int x, int y)
 		return (0);
 	if (map[y][x] == '1')
 		return (0);
-	if (map[y][x] == 'D' && g_game && g_game->door_states[y][x].open == 0)
+	if (map[y][x] == 'D' && door_states && door_states[y][x].open == 0)
 		return (0);
 	return (1);
 }
 
-int	check_area(char **map, t_bounds b)
+int	check_area(char **map, t_bounds b, t_door_state **door_states)
 {
 	int	i;
 	int	j;
@@ -49,7 +48,7 @@ int	check_area(char **map, t_bounds b)
 		j = b.min_x;
 		while (j <= b.max_x)
 		{
-			if (!cell_is_walkable(map, j, i))
+			if (!cell_is_walkable(map, j, i, door_states))
 				return (0);
 			j++;
 		}
@@ -58,7 +57,7 @@ int	check_area(char **map, t_bounds b)
 	return (1);
 }
 
-int	is_walkable(char **map, double x, double y)
+int	is_walkable(char **map, double x, double y, t_door_state **door_states)
 {
 	t_bounds	b;
 
@@ -66,10 +65,10 @@ int	is_walkable(char **map, double x, double y)
 	b.max_x = (int)(x + PLAYER_RADIUS);
 	b.min_y = (int)(y - PLAYER_RADIUS);
 	b.max_y = (int)(y + PLAYER_RADIUS);
-	return (check_area(map, b));
+	return (check_area(map, b, door_states));
 }
 
-void	update_best_position(t_walkable *w, double r)
+void	update_best_position(t_walkable *w, double r, t_door_state **door_states)
 {
 	double	angle;
 	double	nx;
@@ -81,7 +80,7 @@ void	update_best_position(t_walkable *w, double r)
 	{
 		nx = w->cx + cos(angle) * r;
 		ny = w->cy + sin(angle) * r;
-		if (is_walkable(w->map, nx, ny))
+		if (is_walkable(w->map, nx, ny, door_states))
 		{
 			dist = (nx - w->cx) * (nx - w->cx)
 				+ (ny - w->cy) * (ny - w->cy);
