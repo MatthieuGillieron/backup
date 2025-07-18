@@ -27,6 +27,7 @@ LIBFTDIR    = libft
 MANDATORY_SRC_FILES = main.c \
 				events/e_window.c \
 				movement/m_move_player.c \
+				movement/m_move_player_sides.c \
 				movement/m_rotate_player.c \
 				init/i_game.c \
 				init/i_textures.c \
@@ -58,6 +59,7 @@ OBJ_DIRS    = $(sort $(dir $(OBJS)))
 BONUS_SRCS = \
 	src_bonus/main.c \
 	src_bonus/movement/m_move_player.c \
+	src_bonus/movement/m_move_player_sides.c \
 	src_bonus/movement/m_move_player_sides.c \
 	src_bonus/render/r_loop.c \
 	src_bonus/render/r_minimap.c \

@@ -3,36 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   m_move_player_sides.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magillie <magillie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 12:30:15 by magillie          #+#    #+#             */
-/*   Updated: 2025/07/18 12:30:15 by magillie         ###   ########.fr       */
+/*   Updated: 2025/07/18 17:34:45 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
-
-static void	move_player_no_collision(t_game *game,
-	double new_x, double new_y, double *moved)
-{
-	if (!is_walkable(game->map, game->player.x, game->player.y))
-	{
-		if (find_nearest_walkable(game->map,
-				&game->player.x, &game->player.y))
-			game->collision_active = 1;
-		return ;
-	}
-	if (cell_is_walkable(game->map, (int)new_x, (int)game->player.y))
-	{
-		game->player.x = new_x;
-		*moved = 1;
-	}
-	if (cell_is_walkable(game->map, (int)game->player.x, (int)new_y))
-	{
-		game->player.y = new_y;
-		*moved = 1;
-	}
-}
 
 void	move_left(t_game *game)
 {

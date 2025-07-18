@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magillie <magillie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:58:45 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/18 12:00:50 by magillie         ###   ########.fr       */
+/*   Updated: 2025/07/18 17:35:27 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,6 +256,8 @@ void		move_left(t_game *game);
 void		move_right(t_game *game);
 void		rotate_player(t_game *game, int direction);
 int			find_nearest_walkable(char **map, double *x, double *y);
+void		move_player_no_collision(t_game *game,
+			double new_x, double new_y, double *moved);
 
 //-----------*** parsing ***---------------
 char		**open_map(char *map);
