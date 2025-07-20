@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   r_minimap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 09:49:23 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/02 09:05:17 by mg               ###   ########.fr       */
+/*   Updated: 2025/07/20 19:50:13 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	draw_minimap_cells(t_minimap *mm)
 	int	map_x;
 
 	map_y = 0;
-	while (mm->game->map[map_y])
+	while (map_y < mm->height)
 	{
 		map_x = 0;
 		while (map_x < mm->width)

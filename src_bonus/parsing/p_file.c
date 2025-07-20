@@ -6,33 +6,11 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:23:26 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 16:57:38 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 19:51:08 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
-
-int	check_extra_lines_after_map(char **lines, int map_start, t_map_data *data)
-{
-	int	map_lines_count;
-	int	i;
-	int	j;
-
-	map_lines_count = 0;
-	while (data->map[map_lines_count] != NULL)
-		map_lines_count++;
-	i = map_start + map_lines_count;
-	while (lines[i] != NULL)
-	{
-		j = 0;
-		while (lines[i][j] == ' ' || lines[i][j] == '\t')
-			j++;
-		if (lines[i][j] != '\0' && lines[i][j] != '\n')
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 static int	check_header_lines(char **lines, t_map_data *data, int *index)
 {
@@ -73,46 +51,33 @@ static int	check_blank_lines_between(char **lines, int start, int end)
 	return (1);
 }
 
+static int	handle_map_parsing(char **lines, t_map_data *data, \
+	int i, int map_start)
+{
+	if (!check_blank_lines_between(lines, i, map_start))
+		return (0);
+	if (!copy_map(lines, data, map_start))
+		return (0);
+	if (!is_data_complete(data))
+		return (0);
+	if (!check_extra_lines_after_map(lines, map_start, data))
+		return (0);
+	return (1);
+}
+
 int	split_sections(char **lines, t_map_data *data)
 {
 	int	i;
 	int	map_start;
-	int	headers_result;
 
 	i = 0;
-	headers_result = check_header_lines(lines, data, &i);
-	if (headers_result == -2)
-	{
-		free_map_data(data);
-		return (0);
-	}
-	if (headers_result == -1)
+	if (check_header_lines(lines, data, &i) == -1)
 	{
 		free_map_data(data);
 		return (0);
 	}
 	map_start = find_map_start(lines, i);
-	if (map_start < 0)
-	{
-		free_map_data(data);
-		return (0);
-	}
-	if (!check_blank_lines_between(lines, i, map_start))
-	{
-		free_map_data(data);
-		return (0);
-	}
-	if (!copy_map(lines, data, map_start))
-	{
-		free_map_data(data);
-		return (0);
-	}
-	if (!is_data_complete(data))
-	{
-		free_map_data(data);
-		return (0);
-	}
-	if (!check_extra_lines_after_map(lines, map_start, data))
+	if (map_start < 0 || !handle_map_parsing(lines, data, i, map_start))
 	{
 		free_map_data(data);
 		return (0);
