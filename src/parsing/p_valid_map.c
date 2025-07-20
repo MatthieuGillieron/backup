@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_valid_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
+/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:27:39 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 20:55:56 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 20:15:46 by cosmos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ static int	check_map_char(char *line, int j, int y, t_map_ctx *ctx)
 	if (line[j] != '0' && line[j] != '1' && line[j] != '\n' \
 		&& !is_player(line[j]) && line[j] != ' ')
 	{
-		printf("%s\n", ERR_MAP_INVALID_CHAR);
-		exit(1); // Stop the program immediately after the first invalid character
+		//printf("%s\n", ERR_MAP_INVALID_CHAR);
+		return -1; // Stop the program immediately after the first invalid character
 	}
 	if (is_player(line[j]))
 	{
@@ -80,6 +80,8 @@ static int	check_map_characters(char *line, int y, t_map_ctx *ctx)
 	j = 0;
 	while (j < len_line)
 	{
+		if (check_map_char(line, j, y, ctx) == -1)
+			return (-1);
 		if (!check_map_char(line, j, y, ctx))
 			return (0);
 		j++;
@@ -96,6 +98,8 @@ int	check_map_line(char *line, int y, char **map, t_map_check *info)
 	ctx.map = map;
 	ctx.info = info;
 	len_line = check_line(line, &last_index);
+	if (check_map_characters(line, y, &ctx)== -1)
+		return (-1);
 	if (!check_map_characters(line, y, &ctx))
 		return (0);
 	if (last_index >= 0)
