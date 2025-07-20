@@ -6,11 +6,12 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:27:39 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 19:21:01 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 20:55:56 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
+#include <stdlib.h>
 
 int	is_valid_surrounding(char **map, int y, int x)
 {
@@ -54,7 +55,10 @@ static int	check_map_char(char *line, int j, int y, t_map_ctx *ctx)
 {
 	if (line[j] != '0' && line[j] != '1' && line[j] != '\n' \
 		&& !is_player(line[j]) && line[j] != ' ')
-		return (0);
+	{
+		printf("%s\n", ERR_MAP_INVALID_CHAR);
+		exit(1); // Stop the program immediately after the first invalid character
+	}
 	if (is_player(line[j]))
 	{
 		ctx->info->player_count++;
