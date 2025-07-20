@@ -6,7 +6,7 @@
 /*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:27:39 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 21:37:52 by cosmos           ###   ########.fr       */
+/*   Updated: 2025/07/20 21:42:42 by cosmos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	check_map_char(char *line, int j, int y, t_map_ctx *ctx)
 		&& !is_player(line[j]) && line[j] != ' ')
 	{
 		//printf("%s\n", ERR_MAP_INVALID_CHAR);
-		return -2; // Stop the program immediately after the first invalid character
+		return 0; // Stop the program immediately after the first invalid character
 	}
 	if (is_player(line[j]))
 	{
@@ -80,9 +80,9 @@ static int	check_map_characters(char *line, int y, t_map_ctx *ctx)
 	j = 0;
 	while (j < len_line)
 	{
-		if (check_map_char(line, j, y, ctx) == -2)
-			return (1);
-		else if (!check_map_char(line, j, y, ctx))
+		/*if (check_map_char(line, j, y, ctx) == -2)
+			return (1);*/
+		if (!check_map_char(line, j, y, ctx))
 			return (0);
 		j++;
 	}
