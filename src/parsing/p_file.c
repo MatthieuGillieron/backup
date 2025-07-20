@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:23:26 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 17:50:06 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 19:20:24 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,21 @@ static int	check_blank_lines_between(char **lines, int start, int end)
 	}
 	return (1);
 }
+
+static int	handle_map_parsing(char **lines, t_map_data *data, \
+	int i, int map_start)
+{
+	if (!check_blank_lines_between(lines, i, map_start))
+		return (0);
+	if (!copy_map(lines, data, map_start))
+		return (0);
+	if (!is_data_complete(data))
+		return (0);
+	if (!check_extra_lines_after_map(lines, map_start, data))
+		return (0);
+	return (1);
+}
+
 int	split_sections(char **lines, t_map_data *data)
 {
 	int	i;
@@ -114,27 +129,7 @@ int	split_sections(char **lines, t_map_data *data)
 		return (0);
 	}
 	map_start = find_map_start(lines, i);
-	if (map_start < 0)
-	{
-		free_map_data(data);
-		return (0);
-	}
-	if (!check_blank_lines_between(lines, i, map_start))
-	{
-		free_map_data(data);
-		return (0);
-	}
-	if (!copy_map(lines, data, map_start))
-	{
-		free_map_data(data);
-		return (0);
-	}
-	if (!is_data_complete(data))
-	{
-		free_map_data(data);
-		return (0);
-	}
-	if (!check_extra_lines_after_map(lines, map_start, data))
+	if (map_start < 0 || !handle_map_parsing(lines, data, i, map_start))
 	{
 		free_map_data(data);
 		return (0);

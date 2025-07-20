@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:27:39 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 18:22:21 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 19:21:01 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,59 +50,54 @@ static int	check_line(char *line, int *last_playable)
 	return (i);
 }
 
-static int	check_map_line(char *line, int y, char **map, t_map_check *info)
+static int	check_map_char(char *line, int j, int y, t_map_ctx *ctx)
+{
+	if (line[j] != '0' && line[j] != '1' && line[j] != '\n' \
+		&& !is_player(line[j]) && line[j] != ' ')
+		return (0);
+	if (is_player(line[j]))
+	{
+		ctx->info->player_count++;
+		ctx->info->player->x = j;
+		ctx->info->player->y = y;
+		ctx->info->player->direction = line[j];
+	}
+	if (!is_valid_surrounding(ctx->map, y, j))
+		return (0);
+	return (1);
+}
+
+static int	check_map_characters(char *line, int y, t_map_ctx *ctx)
 {
 	int	j;
 	int	len_line;
-	int	last_index;
 
-	len_line = check_line(line, &last_index);
+	len_line = ft_strlen(line);
 	j = 0;
 	while (j < len_line)
 	{
-		// Reject invalid characters
-		if (line[j] != '0' && line[j] != '1' && !is_player(line[j]) && line[j] != ' ')
-		{
-			print_error(ERR_MAP_INVALID_CHAR, NULL);
-			return (0);
-		}
-		if (is_player(line[j]))
-		{
-			info->player_count++;
-			info->player->x = j;
-			info->player->y = y;
-			info->player->direction = line[j];
-		}
-		if (!is_valid_surrounding(map, y, j))
+		if (!check_map_char(line, j, y, ctx))
 			return (0);
 		j++;
 	}
+	return (1);
+}
+
+int	check_map_line(char *line, int y, char **map, t_map_check *info)
+{
+	int			len_line;
+	int			last_index;
+	t_map_ctx	ctx;
+
+	ctx.map = map;
+	ctx.info = info;
+	len_line = check_line(line, &last_index);
+	if (!check_map_characters(line, y, &ctx))
+		return (0);
 	if (last_index >= 0)
 	{
 		if (last_index + 1 >= len_line || line[last_index + 1] != '1')
 			return (0);
 	}
 	return (1);
-}
-
-int	is_map_enclosed(char **map, t_player *player)
-{
-	int			i;
-	t_map_check	info;
-
-	i = 0;
-	info.player = player;
-	info.player_count = 0;
-	while (map[i])
-	{
-		if (!check_map_line(map[i], i, map, &info))
-			return (0);
-		i++;
-	}
-	if (info.player_count > 1)
-	{
-		//print_error(ERR_MAP_MULTI_PLAYER, NULL);
-		return (0);
-	}
-	return (info.player_count == 1);
 }

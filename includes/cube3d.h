@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:58:45 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 16:05:41 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 19:21:35 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,12 @@ typedef struct s_door_state {
 	time_t	open_time;
 }	t_door_state;
 
+typedef struct s_map_ctx
+{
+    char        **map;
+    t_map_check *info;
+}   t_map_ctx;
+
 //-----------[ PROTOTYPES ]----------------
 void		move_right(t_game *game);
 void		move_left(t_game *game);
@@ -236,6 +242,7 @@ void		free_door_states(struct s_door_state **door_states, char **map);
 int			is_door(char c);
 void		update_doors(t_game *game);
 t_img		*handle_door(t_game *game, t_ray_hit *hit);
+int			check_map_line(char *line, int y, char **map, t_map_check *info);
 //-----------*** events ***----------------
 int			close_window(t_game *game);
 int			key_press(int keycode, t_game *game);

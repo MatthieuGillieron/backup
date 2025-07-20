@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:57:53 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/06/24 09:58:59 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 19:21:05 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,23 @@ int	is_player(char c)
 int	is_playable(char c)
 {
 	return (c == '0' || is_player(c));
+}
+
+int	is_map_enclosed(char **map, t_player *player)
+{
+	int			i;
+	t_map_check	info;
+
+	i = 0;
+	info.player = player;
+	info.player_count = 0;
+	while (map[i])
+	{
+		if (!check_map_line(map[i], i, map, &info))
+			return (0);
+		i++;
+	}
+	if (info.player_count > 1)
+		return (0);
+	return (info.player_count == 1);
 }
