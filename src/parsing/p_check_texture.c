@@ -6,11 +6,40 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 10:45:11 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 21:38:15 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 20:52:58 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
+
+static int	check_extension(const char *path)
+{
+	const char	*ext;
+
+	ext = ft_strrchr(path, '.');
+	if (!ext || ft_strncmp(ext, ".xpm", 5) != 0)
+	{
+		print_error("Invalid texture extension", NULL);
+		return (0);
+	}
+	return (1);
+}
+
+static int	try_load_image(const char *path, void *mlx)
+{
+	void	*img;
+	int		w;
+	int		h;
+
+	img = mlx_xpm_file_to_image(mlx, (char *)path, &w, &h);
+	if (!img)
+	{
+		print_error(ERR_TEXTURE_LOAD, NULL);
+		return (0);
+	}
+	mlx_destroy_image(mlx, img);
+	return (1);
+}
 
 int	is_valid_texture(const char *path, void *mlx)
 {
@@ -49,23 +78,16 @@ int	check_path(t_map_data *data, void *mlx_ptr)
 	return (1);
 }
 
-static void	validate_map_enclosure(char **files, t_map_data *map)
-{
-	int	result;
-
-	result = is_map_enclosed(map->map, &map->player);
-	if (result == -1)
-		cleanup_and_exit(ERR_MAP_INVALID_CHAR, files, map);
-	if (result == -2)
-		cleanup_and_exit(ERR_MAP_MULTI_PLAYER, files, map);
-	if (result == 0)
-		cleanup_and_exit(ERR_MAP_NOT_ENCLOSED, files, map);
-}
-
-static void	validate_mlx_and_resources(char **files, t_map_data *map)
+int	check_file(char **files, t_map_data *map)
 {
 	void	*mlx;
 
+	if (!split_sections(files, map))
+		return (1);
+	if (is_map_enclosed(map->map, &map->player) == -1)
+		cleanup_and_exit(ERR_MAP_MULTI_PLAYER, files, map);
+	if (!is_map_enclosed(map->map, &map->player))
+		cleanup_and_exit(ERR_MAP_NOT_ENCLOSED, files, map);	
 	mlx = mlx_init();
 	if (!check_path(map, mlx))
 	{
@@ -82,13 +104,5 @@ static void	validate_mlx_and_resources(char **files, t_map_data *map)
 	assign_direction(&map->player);
 	//mlx_destroy_display(mlx);
 	free(mlx);
-}
-
-int	check_file(char **files, t_map_data *map)
-{
-	if (!split_sections(files, map))
-		return (1);
-	validate_map_enclosure(files, map);
-	validate_mlx_and_resources(files, map);
 	return (0);
 }

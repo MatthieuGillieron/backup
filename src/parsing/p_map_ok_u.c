@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_map_ok_u.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:57:53 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 20:19:36 by cosmos           ###   ########.fr       */
+/*   Updated: 2025/07/20 20:53:18 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,11 @@ int	is_map_enclosed(char **map, t_player *player)
 	info.player_count = 0;
 	while (map[i])
 	{
-		if (check_map_line(map[i], i, map, &info) == -1)
-			return (-1);
 		if (!check_map_line(map[i], i, map, &info))
 			return (0);
 		i++;
 	}
 	if (info.player_count > 1)
-		return (-2);
+		return (-1);
 	return (info.player_count == 1);
 }

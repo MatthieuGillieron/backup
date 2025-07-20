@@ -37,7 +37,6 @@ MANDATORY_SRC_FILES = main.c \
 				parsing/p_map_ok_u.c \
 				parsing/p_map.c \
 				parsing/p_texture.c \
-				parsing/p_split.c \
 				parsing/p_valid_map.c \
 				parsing/p_file_utils.c \
 				raycasting/r_cast.c \
@@ -50,7 +49,6 @@ MANDATORY_SRC_FILES = main.c \
 				utils/u_move_player.c \
 				utils/error.c \
 				utils/cleanup_and_exit.c \
-				utils/u_textures.c \
 				print.c \
 
 SRCS        = $(addprefix $(SRCDIR)/, $(MANDATORY_SRC_FILES))
