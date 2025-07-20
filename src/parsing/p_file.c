@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:23:26 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 17:47:11 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 17:50:06 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	check_header_lines(char **lines, t_map_data *data, int *index)
 	return (found == 6);
 }
 
-
+/*
 static int	validate_map_section(char **lines,
 	t_map_data *data, int i, int map_start)
 {
@@ -74,7 +74,7 @@ static int	validate_map_section(char **lines,
 		|| !check_extra_lines_after_map(lines, map_start, data))
 		return (0);
 	return (1);
-}
+}*/
 /*
 static int	handle_headers(char **lines, t_map_data *data, int *i)
 {
@@ -88,6 +88,20 @@ static int	handle_headers(char **lines, t_map_data *data, int *i)
 	}
 	return (1);
 }*/
+
+static int	check_blank_lines_between(char **lines, int start, int end)
+{
+	int	j;
+
+	j = start;
+	while (j < end)
+	{
+		if (!is_line_empty(lines[j]))
+			return (0);
+		j++;
+	}
+	return (1);
+}
 int	split_sections(char **lines, t_map_data *data)
 {
 	int	i;
