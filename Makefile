@@ -176,45 +176,7 @@ fclean: clean
 
 re: fclean all
 
-leaks: $(NAME)
-	@echo "\033[1;94m Vérification des fuites mémoire... 🔍\033[0m"
-ifeq ($(shell uname), Darwin)
-	@leaks -atExit -- ./$(NAME) $(ARGS) || true
-else
-	@ulimit -n 1024 && valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=/dev/null ./$(NAME) $(ARGS)
-endif
-
-leaks-interactive: $(NAME)
-	@echo "\033[1;94m Test interactif des fuites mémoire... 🎮\033[0m"
-	@echo "\033[1;93m Utilisez ESC pour quitter proprement le programme \033[0m"
-ifeq ($(shell uname), Darwin)
-	@leaks -atExit -- ./$(NAME) $(ARGS) || true
-else
-	@ulimit -n 1024 && valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=/dev/null ./$(NAME) $(ARGS)
-endif
-
 bonus: CFLAGS += -DBONUS
 bonus: $(NAME)_bonus
 
 .PHONY: all clean fclean re libft_make leaks bonus
-leaks-detailed: $(NAME)
-	@echo "\033[1;94m Analyse détaillée des fuites... 🔍\033[0m"
-ifeq ($(shell uname), Darwin)
-	@leaks -atExit -- ./$(NAME) $(ARGS) || true
-else
-	@ulimit -n 1024 && valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --show-reachable=yes -v ./$(NAME) $(ARGS)
-endif
-leaks-trace: $(NAME)
-	@echo "\033[1;94m Trace précise des fuites... 🎯\033[0m"
-ifeq ($(shell uname), Darwin)
-	@leaks -atExit -- ./$(NAME) $(ARGS) || true
-else
-	@ulimit -n 1024 && valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME) $(ARGS)
-endif
-leaks-bonus: bonus
-	@echo "\033[1;94m Test des fuites mémoire bonus... 🎮\033[0m"
-ifeq ($(shell uname), Darwin)
-	@leaks -atExit -- ./$(NAME) $(ARGS) || true
-else
-	@ulimit -n 1024 && valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARGS)
-endif
