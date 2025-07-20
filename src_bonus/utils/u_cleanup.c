@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:07:01 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 23:34:52 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 23:44:11 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,11 @@ void	free_map_data(t_map_data *data)
 	}
 }
 
-void free_files(char **files)
+void	free_files(char **files)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (files[i])
 		free(files[i++]);
 	free(files);

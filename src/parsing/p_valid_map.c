@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:27:39 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 22:57:20 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/21 00:01:17 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	is_valid_surrounding(char **map, int y, int x)
 	return (1);
 }
 
-static int	check_line(char *line, int *last_playable)
+int	check_line(char *line, int *last_playable)
 {
 	int	i;
 

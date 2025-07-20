@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:58:45 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 23:34:57 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 23:59:48 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,6 +248,8 @@ int			check_blank_lines_between(char **lines, int start, int end);
 int			check_map_line(char *line, int y, t_map_ctx *ctx);
 int			check_extra_lines_after_map(char **lines, \
 	int map_start, t_map_data *data);
+int			check_line(char *line, int *last_playable);
+int			check_header_lines(char **lines, t_map_data *data, int *index);
 //-----------*** events ***----------------
 int			close_window(t_game *game);
 int			key_press(int keycode, t_game *game);

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:15:08 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 15:07:55 by mg               ###   ########.fr       */
+/*   Updated: 2025/07/21 00:00:30 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
-static void	free_files(char **files)
+void	free_files(char **files)
 {
 	int	i;
 

@@ -6,21 +6,11 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:15:08 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 15:56:44 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 23:49:58 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
-
-static void	free_files(char **files)
-{
-	int	i;
-
-	i = 0;
-	while (files[i])
-		free(files[i++]);
-	free(files);
-}
 
 static void	setup_game_data(t_game *game, t_map_data *map)
 {

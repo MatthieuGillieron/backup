@@ -86,6 +86,7 @@ BONUS_SRCS = \
 	src_bonus/utils/u_move_player.c \
 	src_bonus/utils/cleanup_and_exit.c \
 	src_bonus/utils/error.c \
+	src_bonus/parsing/p_utils.c \
 
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 

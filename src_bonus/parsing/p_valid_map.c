@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:27:39 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 23:07:44 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 23:58:09 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,6 @@ int	is_valid_surrounding(char **map, int y, int x)
 		map[y][x - 1] == ' ' || map[y][x + 1] == ' ')
 		return (0);
 	return (1);
-}
-
-static int	check_line(char *line, int *last_playable)
-{
-	int	i;
-
-	i = 0;
-	*last_playable = -1;
-	while (line[i])
-	{
-		if (is_playable(line[i]) || is_door(line[i]))
-			*last_playable = i;
-		i++;
-	}
-	return (i);
 }
 
 static int	check_map_char(char *line, int j, int y, t_map_ctx *ctx)

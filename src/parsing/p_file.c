@@ -6,13 +6,13 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:23:26 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 22:48:23 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/21 00:00:48 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
 
-static int	check_header_lines(char **lines, t_map_data *data, int *index)
+int	check_header_lines(char **lines, t_map_data *data, int *index)
 {
 	int	found;
 	int	i;
