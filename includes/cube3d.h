@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:58:45 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 23:02:55 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 23:34:57 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -318,6 +318,7 @@ int			check_area(char **map, t_bounds b, \
 int			cell_is_walkable(char **map, int x, int y, \
 	struct s_door_state **door_states);
 void		calc_map_size(char **map, int *width, int *height);
+void		free_files(char **files);
 
 //------------*** TEST ***-----------------
 void		print_map_data(t_map_data *data);
