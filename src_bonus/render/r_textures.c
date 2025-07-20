@@ -6,13 +6,14 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 10:09:38 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/18 11:32:56 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 15:59:34 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
 
-static t_img	*select_wall_texture(t_game *game, t_ray_hit *hit, double ray_angle)
+static t_img	*select_wall_texture(t_game *game, t_ray_hit *hit, \
+	double ray_angle)
 {
 	if (hit->side == 0)
 	{
@@ -34,23 +35,17 @@ static double	normalize_angle(double angle)
 	return (angle);
 }
 
-static t_img	*handle_out_of_bounds(t_game *game, t_ray_hit *hit, double ray_angle)
+static t_img	*handle_out_of_bounds(t_game *game, t_ray_hit *hit, \
+	double ray_angle)
 {
 	ray_angle = normalize_angle(ray_angle);
 	return (select_wall_texture(game, hit, ray_angle));
 }
 
-static t_img	*handle_door(t_game *game, t_ray_hit *hit)
-{
-	if (game->door_states && game->door_states[hit->map_y][hit->map_x].open)
-		return (NULL);
-	return (&game->textures.door);
-}
-
 t_img	*get_wall_texture(t_game *game, t_ray_hit *hit, double ray_angle)
 {
-	if (hit->map_y < 0 || hit->map_x < 0 ||
-		!game->map[hit->map_y] ||
+	if (hit->map_y < 0 || hit->map_x < 0 || \
+		!game->map[hit->map_y] || \
 		hit->map_x >= (int)ft_strlen(game->map[hit->map_y]))
 		return (handle_out_of_bounds(game, hit, ray_angle));
 	if (game->map[hit->map_y][hit->map_x] == 'D')

@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:27:39 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/18 11:28:38 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 15:24:17 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ int	is_map_enclosed(char **map, t_player *player)
 			return (0);
 		i++;
 	}
-	if (info.player_count > 1) {
+	if (info.player_count > 1)
+	{
 		print_error(ERR_MAP_MULTI_PLAYER, NULL);
 		return (0);
 	}

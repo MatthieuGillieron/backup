@@ -6,12 +6,11 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 17:34:42 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/18 11:43:34 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 15:58:59 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
-#include <time.h>
 
 int	cell_is_walkable(char **map, int x, int y, t_door_state **door_states)
 {
@@ -68,7 +67,8 @@ int	is_walkable(char **map, double x, double y, t_door_state **door_states)
 	return (check_area(map, b, door_states));
 }
 
-void	update_best_position(t_walkable *w, double r, t_door_state **door_states)
+void	update_best_position(t_walkable *w, double r, \
+	t_door_state **door_states)
 {
 	double	angle;
 	double	nx;

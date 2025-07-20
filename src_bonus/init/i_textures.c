@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 15:35:38 by mg                #+#    #+#             */
-/*   Updated: 2025/07/17 16:05:44 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 15:56:25 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ int	load_textures(t_game *game)
 	if (!load_single_texture(game, &game->textures.west,
 			game->map_data.textures.we))
 		return (0);
-	if (game->map_data.textures.door) {
+	if (game->map_data.textures.door)
+	{
 		if (!load_single_texture(game, &game->textures.door,
 				game->map_data.textures.door))
 			return (0);

@@ -6,13 +6,14 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 15:57:11 by mg                #+#    #+#             */
-/*   Updated: 2025/07/18 11:45:11 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 15:47:39 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
 
-static int	find_nearest_walkable(char **map, double *x, double *y, t_door_state **door_states)
+static int	find_nearest_walkable(char **map, double *x, double *y, \
+	t_door_state **door_states)
 {
 	t_walkable	w;
 	double		r;
@@ -39,22 +40,25 @@ static int	find_nearest_walkable(char **map, double *x, double *y, t_door_state 
 	return (0);
 }
 
-static void	move_player_no_collision(t_game *game,
+void	move_player_no_collision(t_game *game,
 	double new_x, double new_y, double *moved)
 {
-	if (!is_walkable(game->map, game->player.x, game->player.y, game->door_states))
+	if (!is_walkable(game->map, game->player.x, \
+		game->player.y, game->door_states))
 	{
 		if (find_nearest_walkable(game->map,
 				&game->player.x, &game->player.y, game->door_states))
 			game->collision_active = 1;
 		return ;
 	}
-	if (cell_is_walkable(game->map, (int)new_x, (int)game->player.y, game->door_states))
+	if (cell_is_walkable(game->map, (int)new_x, \
+	(int)game->player.y, game->door_states))
 	{
 		game->player.x = new_x;
 		*moved = 1;
 	}
-	if (cell_is_walkable(game->map, (int)game->player.x, (int)new_y, game->door_states))
+	if (cell_is_walkable(game->map, (int)game->player.x, \
+	(int)new_y, game->door_states))
 	{
 		game->player.y = new_y;
 		*moved = 1;
@@ -88,19 +92,22 @@ void	move_forward(t_game *game)
 static void	move_player_no_collision_back(t_game *game,
 	double new_x, double new_y, double *moved)
 {
-	if (!is_walkable(game->map, game->player.x, game->player.y, game->door_states))
+	if (!is_walkable(game->map, game->player.x, \
+		game->player.y, game->door_states))
 	{
 		if (find_nearest_walkable(game->map,
 				&game->player.x, &game->player.y, game->door_states))
 			game->collision_active = 1;
 		return ;
 	}
-	if (cell_is_walkable(game->map, (int)new_x, (int)game->player.y, game->door_states))
+	if (cell_is_walkable(game->map, (int)new_x, \
+	(int)game->player.y, game->door_states))
 	{
 		game->player.x = new_x;
 		*moved = 1;
 	}
-	if (cell_is_walkable(game->map, (int)game->player.x, (int)new_y, game->door_states))
+	if (cell_is_walkable(game->map, (int)game->player.x, \
+	(int)new_y, game->door_states))
 	{
 		game->player.y = new_y;
 		*moved = 1;
@@ -118,53 +125,6 @@ void	move_backward(t_game *game)
 	moved = 0;
 	if (!game->collision_active)
 		move_player_no_collision_back(game, new_x, new_y, &moved);
-	else
-	{
-		if (is_walkable(game->map, new_x, game->player.y, game->door_states)
-			&& game->map[(int)game->player.y][(int)new_x] != '1')
-			game->player.x = new_x;
-		if (is_walkable(game->map, game->player.x, new_y, game->door_states)
-			&& game->map[(int)new_y][(int)game->player.x] != '1')
-			game->player.y = new_y;
-	}
-	if (moved)
-		game->collision_active = 1;
-}
-void	move_left(t_game *game)
-{
-	double	new_x;
-	double	new_y;
-	double	moved;
-
-	new_x = game->player.x + cos(game->player.angle - M_PI / 2) * MOVE_SPEED;
-	new_y = game->player.y + sin(game->player.angle - M_PI / 2) * MOVE_SPEED;
-	moved = 0;
-	if (!game->collision_active)
-		move_player_no_collision(game, new_x, new_y, &moved);
-	else
-	{
-		if (is_walkable(game->map, new_x, game->player.y, game->door_states)
-			&& game->map[(int)game->player.y][(int)new_x] != '1')
-			game->player.x = new_x;
-		if (is_walkable(game->map, game->player.x, new_y, game->door_states)
-			&& game->map[(int)new_y][(int)game->player.x] != '1')
-			game->player.y = new_y;
-	}
-	if (moved)
-		game->collision_active = 1;
-}
-
-void	move_right(t_game *game)
-{
-	double	new_x;
-	double	new_y;
-	double	moved;
-
-	new_x = game->player.x + cos(game->player.angle + M_PI / 2) * MOVE_SPEED;
-	new_y = game->player.y + sin(game->player.angle + M_PI / 2) * MOVE_SPEED;
-	moved = 0;
-	if (!game->collision_active)
-		move_player_no_collision(game, new_x, new_y, &moved);
 	else
 	{
 		if (is_walkable(game->map, new_x, game->player.y, game->door_states)

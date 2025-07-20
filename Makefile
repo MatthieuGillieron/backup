@@ -28,6 +28,7 @@ MANDATORY_SRC_FILES = main.c \
 				events/e_window.c \
 				movement/m_move_player.c \
 				movement/m_rotate_player.c \
+				movement/m_move_player_sides.c \
 				init/i_game.c \
 				init/i_textures.c \
 				parsing/p_check_texture.c \
@@ -62,6 +63,7 @@ BONUS_SRCS = \
 	src_bonus/utils/u_map_size.c \
 	src_bonus/utils/u_minimap.c \
 	src_bonus/events/e_window.c \
+	src_bonus/events/e_input.c \
 	src_bonus/init/i_game.c \
 	src_bonus/init/i_textures.c \
 	src_bonus/parsing/p_check_texture.c \
@@ -74,11 +76,13 @@ BONUS_SRCS = \
 	src_bonus/parsing/p_rgb.c \
 	src_bonus/raycasting/r_cast.c \
 	src_bonus/render/r_background.c \
+	src_bonus/render/r_doors.c \
 	src_bonus/render/r_wall.c \
 	src_bonus/render/r_textures.c \
 	src_bonus/utils/u_cleanup.c \
 	src_bonus/utils/u_dir_player.c \
 	src_bonus/movement/m_rotate_player.c \
+	src_bonus/movement/m_move_player_sides.c \
 	src_bonus/utils/u_move_player.c \
 	src_bonus/utils/cleanup_and_exit.c \
 	src_bonus/utils/error.c \

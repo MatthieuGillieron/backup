@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:27:39 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/18 11:26:51 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 15:44:08 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,18 @@ static int	check_line(char *line, int *last_playable)
 	return (i);
 }
 
+static int	process_player(char *line, int j, int y, t_map_check *info)
+{
+	if (is_player(line[j]))
+	{
+		info->player_count++;
+		info->player->x = j;
+		info->player->y = y;
+		info->player->direction = line[j];
+	}
+	return (1);
+}
+
 static int	check_map_line(char *line, int y, char **map, t_map_check *info)
 {
 	int	j;
@@ -60,22 +72,14 @@ static int	check_map_line(char *line, int y, char **map, t_map_check *info)
 	j = 0;
 	while (j < len_line)
 	{
-		if (is_player(line[j]))
-		{
-			info->player_count++;
-			info->player->x = j;
-			info->player->y = y;
-			info->player->direction = line[j];
-		}
+		process_player(line, j, y, info);
 		if (!is_valid_surrounding(map, y, j))
 			return (0);
 		j++;
 	}
-	if (last_index >= 0)
-	{
-		if (last_index + 1 >= len_line || (line[last_index + 1] != '1' && line[last_index + 1] != 'D'))
-			return (0);
-	}
+	if (last_index >= 0 && (last_index + 1 >= len_line
+			|| (line[last_index + 1] != '1' && line[last_index + 1] != 'D')))
+		return (0);
 	return (1);
 }
 
@@ -93,7 +97,8 @@ int	is_map_enclosed(char **map, t_player *player)
 			return (0);
 		i++;
 	}
-	if (info.player_count > 1) {
+	if (info.player_count > 1)
+	{
 		print_error(ERR_MAP_MULTI_PLAYER, NULL);
 		return (0);
 	}
