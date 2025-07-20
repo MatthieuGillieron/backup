@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:23:26 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 16:50:45 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 17:47:11 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	validate_map_section(char **lines,
 		return (0);
 	return (1);
 }
-
+/*
 static int	handle_headers(char **lines, t_map_data *data, int *i)
 {
 	int	headers_result;
@@ -87,19 +87,13 @@ static int	handle_headers(char **lines, t_map_data *data, int *i)
 		return (0);
 	}
 	return (1);
-}
+}*/
 int	split_sections(char **lines, t_map_data *data)
 {
 	int	i;
 	int	map_start;
 
 	i = 0;
-	if (!handle_headers(lines, data, &i))
-	{
-		free_map_data(data);
-		return (0);
-	
-	}
 	if (check_header_lines(lines, data, &i) == -1)
 	{
 		free_map_data(data);
@@ -111,11 +105,25 @@ int	split_sections(char **lines, t_map_data *data)
 		free_map_data(data);
 		return (0);
 	}
-	if (!validate_map_section(lines, data, i, map_start))
+	if (!check_blank_lines_between(lines, i, map_start))
+	{
+		free_map_data(data);
+		return (0);
+	}
+	if (!copy_map(lines, data, map_start))
+	{
+		free_map_data(data);
+		return (0);
+	}
+	if (!is_data_complete(data))
+	{
+		free_map_data(data);
+		return (0);
+	}
+	if (!check_extra_lines_after_map(lines, map_start, data))
 	{
 		free_map_data(data);
 		return (0);
 	}
 	return (1);
 }
-char	**open_map(char *map);
