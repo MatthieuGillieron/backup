@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_file.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:23:26 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/17 15:38:35 by mg               ###   ########.fr       */
+/*   Updated: 2025/07/20 16:23:03 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ static int	check_header_lines(char **lines, t_map_data *data, int *index)
 			continue ;
 		}
 		if (!assign_texture_or_color(lines[i], data, &found))
-			return (-1);
+		{
+			print_error(ERR_MAP_EXTRA_INFO, NULL);
+			return (-2);
+		}
 		i++;
 	}
 	*index = i;
@@ -75,17 +78,27 @@ static int	validate_map_section(char **lines,
 	return (1);
 }
 
+static int	handle_headers(char **lines, t_map_data *data, int *i)
+{
+	int	headers_result;
+
+	headers_result = check_header_lines(lines, data, i);
+	if (headers_result == -2 || headers_result == -1)
+	{
+		free_map_data(data);
+		return (0);
+	}
+	return (1);
+}
+
 int	split_sections(char **lines, t_map_data *data)
 {
 	int	i;
 	int	map_start;
 
 	i = 0;
-	if (check_header_lines(lines, data, &i) == -1)
-	{
-		free_map_data(data);
+	if (!handle_headers(lines, data, &i))
 		return (0);
-	}
 	map_start = find_map_start(lines, i);
 	if (map_start < 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 00:00:00 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/01/27 00:00:00 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 16:11:40 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@
 # define ERR_MLX_INIT "MLX initialization failed"
 # define ERR_WIN_CREATE "Window creation failed"
 # define ERR_IMG_CREATE "Image creation failed"
+# define ERR_MAP_EXTRA_INFO "Map parsing failed: unknown or extra information in header"
 
 #endif

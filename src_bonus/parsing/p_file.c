@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:23:26 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 15:44:52 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 16:16:16 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ static int	check_header_lines(char **lines, t_map_data *data, int *index)
 			continue ;
 		}
 		if (!assign_texture_or_color(lines[i], data, &found))
-			return (-1);
+		{
+			print_error(ERR_MAP_EXTRA_INFO, NULL);
+			return (-2);
+		}
 		i++;
 	}
 	*index = i;
@@ -74,9 +77,16 @@ int	split_sections(char **lines, t_map_data *data)
 {
 	int	i;
 	int	map_start;
+	int	headers_result;
 
 	i = 0;
-	if (check_header_lines(lines, data, &i) == -1)
+	headers_result = check_header_lines(lines, data, &i);
+	if (headers_result == -2)
+	{
+		free_map_data(data);
+		return (0);
+	}
+	if (headers_result == -1)
 		return (0);
 	map_start = find_map_start(lines, i);
 	if (map_start < 0)
