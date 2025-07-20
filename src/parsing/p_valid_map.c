@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:27:39 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 22:45:56 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 22:57:20 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ static int	check_map_char(char *line, int j, int y, t_map_ctx *ctx)
 {
 	if (line[j] != '0' && line[j] != '1' && line[j] != '\n' \
 		&& !is_player(line[j]) && line[j] != ' ')
+	{
+		cleanup_and_exit(ERR_MAP_INVALID_CHAR, ctx->files, ctx->map_data);
 		return (0);
+	}
 	if (is_player(line[j]))
 	{
 		ctx->info->player_count++;
@@ -84,16 +87,13 @@ static int	check_map_characters(char *line, int y, t_map_ctx *ctx)
 	return (1);
 }
 
-int	check_map_line(char *line, int y, char **map, t_map_check *info)
+int	check_map_line(char *line, int y, t_map_ctx *ctx)
 {
 	int			len_line;
 	int			last_index;
-	t_map_ctx	ctx;
 
-	ctx.map = map;
-	ctx.info = info;
 	len_line = check_line(line, &last_index);
-	if (!check_map_characters(line, y, &ctx))
+	if (!check_map_characters(line, y, ctx))
 		return (0);
 	if (last_index >= 0)
 	{
