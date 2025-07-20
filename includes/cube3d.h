@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:58:45 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 19:51:45 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 21:39:27 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,6 +244,10 @@ void		update_doors(t_game *game);
 t_img		*handle_door(t_game *game, t_ray_hit *hit);
 int			check_map_line(char *line, int y, char **map, t_map_check *info);
 int			check_extra_lines_after_map(char **lines, int map_start, t_map_data *data);
+int			check_blank_lines_between(char **lines, int start, int end);
+int			check_extra_lines_after_map(char **lines, int map_start, t_map_data *data);
+int			check_extension(const char *path);
+int			try_load_image(const char *path, void *mlx);
 //-----------*** events ***----------------
 int			close_window(t_game *game);
 int			key_press(int keycode, t_game *game);
