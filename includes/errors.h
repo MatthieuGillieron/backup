@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 00:00:00 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 20:04:10 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 23:01:06 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,12 @@
 # define ERR_MLX_INIT "MLX initialization failed"
 # define ERR_WIN_CREATE "Window creation failed"
 # define ERR_IMG_CREATE "Image creation failed"
-# define ERR_MAP_EXTRA_INFO "Map parsing failed: unknown or extra information in header"
-# define ERR_MAP_INVALID_CHAR "Invalid character in map (allowed: 0, 1, N, S, E, W, space)"
-# define ERR_MAP_MISSING_SECTION "Map is missing a required section (NO, SO, WE, EA, F, C)"
+# define ERR_MAP_EXTRA_INFO "Map parsing failed: unknown \
+or extra information in header"
+# define ERR_MAP_INVALID_CHAR "Invalid character \
+in map (allowed: 0, 1, N, S, E, W, space)"
+# define ERR_MAP_MISSING_SECTION "Map is missing a \
+required section (NO, SO, WE, EA, F, C)"
 # define ERR_MAP_EXTRA_SECTION "Map has extra or unknown section(s) in header"
 
 #endif
