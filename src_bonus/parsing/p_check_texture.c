@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 10:45:11 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 23:05:54 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 23:14:17 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	check_file(char **files, t_map_data *map)
 	void	*mlx;
 
 	if (!split_sections(files, map))
-		return (1);
+		cleanup_and_exit(ERR_MAP_MISSING_SECTION, files, map);
 	if (is_map_enclosed(map->map, &map->player, files, map) == -1)
 		cleanup_and_exit(ERR_MAP_MULTI_PLAYER, files, map);
 	if (!is_map_enclosed(map->map, &map->player, files, map))
