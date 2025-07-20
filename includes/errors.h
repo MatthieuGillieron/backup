@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 00:00:00 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 16:11:40 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 18:20:00 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@
 # define ERR_WIN_CREATE "Window creation failed"
 # define ERR_IMG_CREATE "Image creation failed"
 # define ERR_MAP_EXTRA_INFO "Map parsing failed: unknown or extra information in header"
+# define ERR_MAP_INVALID_CHAR "Invalid character in map (allowed: 0, 1, N, S, E, W, space)"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:27:39 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 15:24:17 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 18:20:04 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ static int	check_map_line(char *line, int y, char **map, t_map_check *info)
 	j = 0;
 	while (j < len_line)
 	{
+		// Reject invalid characters
+		if (line[j] != '0' && line[j] != '1' && !is_player(line[j]) && line[j] != ' ')
+		{
+			print_error(ERR_MAP_INVALID_CHAR, NULL);
+			return (0);
+		}
 		if (is_player(line[j]))
 		{
 			info->player_count++;
