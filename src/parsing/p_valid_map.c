@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_valid_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cosmos <cosmos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:27:39 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 21:42:42 by cosmos           ###   ########.fr       */
+/*   Updated: 2025/07/20 22:45:56 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,7 @@ static int	check_map_char(char *line, int j, int y, t_map_ctx *ctx)
 {
 	if (line[j] != '0' && line[j] != '1' && line[j] != '\n' \
 		&& !is_player(line[j]) && line[j] != ' ')
-	{
-		//printf("%s\n", ERR_MAP_INVALID_CHAR);
-		return 0; // Stop the program immediately after the first invalid character
-	}
+		return (0);
 	if (is_player(line[j]))
 	{
 		ctx->info->player_count++;
@@ -80,8 +77,6 @@ static int	check_map_characters(char *line, int y, t_map_ctx *ctx)
 	j = 0;
 	while (j < len_line)
 	{
-		/*if (check_map_char(line, j, y, ctx) == -2)
-			return (1);*/
 		if (!check_map_char(line, j, y, ctx))
 			return (0);
 		j++;

@@ -6,7 +6,7 @@
 /*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 18:58:45 by maximemarti       #+#    #+#             */
-/*   Updated: 2025/07/20 19:51:45 by maximemarti      ###   ########.fr       */
+/*   Updated: 2025/07/20 22:48:51 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,6 +242,7 @@ void		free_door_states(struct s_door_state **door_states, char **map);
 int			is_door(char c);
 void		update_doors(t_game *game);
 t_img		*handle_door(t_game *game, t_ray_hit *hit);
+int			check_blank_lines_between(char **lines, int start, int end);
 int			check_map_line(char *line, int y, char **map, t_map_check *info);
 int			check_extra_lines_after_map(char **lines, int map_start, t_map_data *data);
 //-----------*** events ***----------------

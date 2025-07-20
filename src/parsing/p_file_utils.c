@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_file_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: maximemartin <maximemartin@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 15:40:00 by mg                #+#    #+#             */
-/*   Updated: 2025/07/17 15:40:13 by mg               ###   ########.fr       */
+/*   Updated: 2025/07/20 22:49:24 by maximemarti      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,40 @@ char	**open_map(char *map)
 		return (NULL);
 	}
 	return (line);
+}
+
+int	check_extra_lines_after_map(char **lines, int map_start, t_map_data *data)
+{
+	int	map_lines_count;
+	int	i;
+	int	j;
+
+	map_lines_count = 0;
+	while (data->map[map_lines_count] != NULL)
+		map_lines_count++;
+	i = map_start + map_lines_count;
+	while (lines[i] != NULL)
+	{
+		j = 0;
+		while (lines[i][j] == ' ' || lines[i][j] == '\t')
+			j++;
+		if (lines[i][j] != '\0' && lines[i][j] != '\n')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	check_blank_lines_between(char **lines, int start, int end)
+{
+	int	j;
+
+	j = start;
+	while (j < end)
+	{
+		if (!is_line_empty(lines[j]))
+			return (0);
+		j++;
+	}
+	return (1);
 }
