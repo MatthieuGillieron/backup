@@ -68,7 +68,7 @@ int	is_walkable(char **map, double x, double y, t_door_state **door_states)
 }
 
 void	update_best_position(t_walkable *w, double r, \
-	t_door_state **door_states)
+t_door_state **door_states)
 {
 	double	angle;
 	double	nx;

@@ -35,7 +35,7 @@ int	check_header_lines(char **lines, t_map_data *data, int *index)
 }
 
 static int	handle_map_parsing(char **lines, t_map_data *data, \
-	int i, int map_start)
+int i, int map_start)
 {
 	if (!check_blank_lines_between(lines, i, map_start))
 		return (0);
@@ -74,7 +74,7 @@ static int	process_map_section(char **lines, t_map_data *data, int start_index)
 
 	map_start = find_map_start(lines, start_index);
 	if (map_start < 0 || !handle_map_parsing(lines, data, \
-		start_index, map_start))
+start_index, map_start))
 	{
 		printf("%s\n", ERR_MAP_INVALID);
 		free_map_data(data);

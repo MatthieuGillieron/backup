@@ -13,7 +13,7 @@
 #include "../../includes/cube3d.h"
 
 static t_img	*select_wall_texture(t_game *game, t_ray_hit *hit, \
-	double ray_angle)
+double ray_angle)
 {
 	if (hit->side == 0)
 	{
@@ -36,7 +36,7 @@ static double	normalize_angle(double angle)
 }
 
 static t_img	*handle_out_of_bounds(t_game *game, t_ray_hit *hit, \
-	double ray_angle)
+double ray_angle)
 {
 	ray_angle = normalize_angle(ray_angle);
 	return (select_wall_texture(game, hit, ray_angle));
@@ -45,8 +45,8 @@ static t_img	*handle_out_of_bounds(t_game *game, t_ray_hit *hit, \
 t_img	*get_wall_texture(t_game *game, t_ray_hit *hit, double ray_angle)
 {
 	if (hit->map_y < 0 || hit->map_x < 0 || \
-		!game->map[hit->map_y] || \
-		hit->map_x >= (int)ft_strlen(game->map[hit->map_y]))
+!game->map[hit->map_y] || \
+hit->map_x >= (int)ft_strlen(game->map[hit->map_y]))
 		return (handle_out_of_bounds(game, hit, ray_angle));
 	if (game->map[hit->map_y][hit->map_x] == 'D')
 		return (handle_door(game, hit));

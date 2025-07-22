@@ -38,7 +38,7 @@ int	is_valid_surrounding(char **map, int y, int x)
 static int	check_map_char(char *line, int j, int y, t_map_ctx *ctx)
 {
 	if (line[j] != '0' && line[j] != '1' && line[j] != 'D' && line[j] != '\n' \
-		&& !is_player(line[j]) && line[j] != ' ')
+&& !is_player(line[j]) && line[j] != ' ')
 	{
 		cleanup_and_exit(ERR_MAP_INVALID_CHAR, ctx->files, ctx->map_data);
 		return (0);
@@ -80,13 +80,13 @@ int	check_map_line(char *line, int y, t_map_ctx *ctx)
 	if (!check_map_characters(line, y, ctx))
 		return (0);
 	if (last_index >= 0 && (last_index + 1 >= len_line \
-		|| (line[last_index + 1] != '1' && line[last_index + 1] != 'D')))
+|| (line[last_index + 1] != '1' && line[last_index + 1] != 'D')))
 		return (0);
 	return (1);
 }
 
 int	is_map_enclosed(char **map, t_player *player, \
-	char **files, t_map_data *map_data)
+char **files, t_map_data *map_data)
 {
 	int			i;
 	t_map_check	info;

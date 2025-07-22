@@ -13,7 +13,7 @@
 #include "../../includes/cube3d.h"
 
 static int	find_nearest_walkable(char **map, double *x, double *y, \
-	t_door_state **door_states)
+t_door_state **door_states)
 {
 	t_walkable	w;
 	double		r;
@@ -40,11 +40,11 @@ static int	find_nearest_walkable(char **map, double *x, double *y, \
 	return (0);
 }
 
-void	move_player_no_collision(t_game *game,
-	double new_x, double new_y, double *moved)
+void	move_player_no_collision(t_game *game, \
+double new_x, double new_y, double *moved)
 {
 	if (!is_walkable(game->map, game->player.x, \
-		game->player.y, game->door_states))
+game->player.y, game->door_states))
 	{
 		if (find_nearest_walkable(game->map,
 				&game->player.x, &game->player.y, game->door_states))
@@ -52,13 +52,13 @@ void	move_player_no_collision(t_game *game,
 		return ;
 	}
 	if (cell_is_walkable(game->map, (int)new_x, \
-	(int)game->player.y, game->door_states))
+(int)game->player.y, game->door_states))
 	{
 		game->player.x = new_x;
 		*moved = 1;
 	}
 	if (cell_is_walkable(game->map, (int)game->player.x, \
-	(int)new_y, game->door_states))
+(int)new_y, game->door_states))
 	{
 		game->player.y = new_y;
 		*moved = 1;
@@ -89,11 +89,11 @@ void	move_forward(t_game *game)
 		game->collision_active = 1;
 }
 
-static void	move_player_no_collision_back(t_game *game,
-	double new_x, double new_y, double *moved)
+static void	move_player_no_collision_back(t_game *game, \
+double new_x, double new_y, double *moved)
 {
 	if (!is_walkable(game->map, game->player.x, \
-		game->player.y, game->door_states))
+game->player.y, game->door_states))
 	{
 		if (find_nearest_walkable(game->map,
 				&game->player.x, &game->player.y, game->door_states))
@@ -101,13 +101,13 @@ static void	move_player_no_collision_back(t_game *game,
 		return ;
 	}
 	if (cell_is_walkable(game->map, (int)new_x, \
-	(int)game->player.y, game->door_states))
+(int)game->player.y, game->door_states))
 	{
 		game->player.x = new_x;
 		*moved = 1;
 	}
 	if (cell_is_walkable(game->map, (int)game->player.x, \
-	(int)new_y, game->door_states))
+(int)new_y, game->door_states))
 	{
 		game->player.y = new_y;
 		*moved = 1;

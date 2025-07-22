@@ -58,7 +58,8 @@
 # endif
 
 //--------[ STRUCTURE ]----------
-typedef struct s_texture {
+typedef struct s_texture
+{
 	char	*no;
 	char	*so;
 	char	*we;
@@ -66,7 +67,8 @@ typedef struct s_texture {
 	char	*door;
 }	t_texture;
 
-typedef struct s_color {
+typedef struct s_color
+{
 	char	*floor;
 	char	*ceiling;
 	int		set_floor;
@@ -81,7 +83,8 @@ typedef struct s_player
 	double	angle;
 }	t_player;
 
-typedef struct s_map_data {
+typedef struct s_map_data
+{
 	t_texture	textures;
 	t_color		colors;
 	t_player	player;
@@ -114,7 +117,8 @@ typedef struct s_textures
 	t_img	door;
 }	t_textures;
 
-typedef struct s_key_state {
+typedef struct s_key_state
+{
 	int	forward;
 	int	backward;
 	int	left;
@@ -169,13 +173,15 @@ typedef struct s_ray_dir
 	int		step_y;
 }	t_ray_dir;
 
-typedef struct s_draw_params {
+typedef struct s_draw_params
+{
 	int		x;
 	int		draw_start;
 	int		draw_end;
 	int		tex_x;
 	int		line_height;
 }	t_draw_params;
+
 typedef struct s_line_params
 {
 	t_game			*game;
@@ -223,7 +229,8 @@ typedef struct s_walkable
 	int			found;
 }	t_walkable;
 
-typedef struct s_door_state {
+typedef struct s_door_state
+{
 	int		open;
 	time_t	open_time;
 }	t_door_state;
@@ -246,7 +253,7 @@ t_img		*handle_door(t_game *game, t_ray_hit *hit);
 int			check_blank_lines_between(char **lines, int start, int end);
 int			check_map_line(char *line, int y, t_map_ctx *ctx);
 int			check_extra_lines_after_map(char **lines, \
-	int map_start, t_map_data *data);
+int map_start, t_map_data *data);
 int			check_line(char *line, int *last_playable);
 int			check_header_lines(char **lines, t_map_data *data, int *index);
 //-----------*** events ***----------------
@@ -267,7 +274,7 @@ void		move_left(t_game *game);
 void		move_right(t_game *game);
 void		rotate_player(t_game *game, int direction);
 void		move_player_no_collision(t_game *game, \
-			double new_x, double new_y, double *moved);
+double new_x, double new_y, double *moved);
 //-----------*** parsing ***---------------
 char		**open_map(char *map);
 int			split_sections(char **lines, t_map_data *data);
@@ -277,7 +284,7 @@ int			is_data_complete(t_map_data *data);
 int			find_map_start(char **lines, int i);
 int			assign_texture_or_color(char *line, t_map_data *data, int *found);
 int			is_map_enclosed(char **map, t_player *player, \
-	char **files, t_map_data *map_data);
+char **files, t_map_data *map_data);
 int			is_player(char c);
 int			is_playable(char c);
 int			check_file(char **files, t_map_data *map);
@@ -292,9 +299,9 @@ t_ray_hit	cast_ray(t_game *game, double ray_angle);
 int			render_loop(void *param);
 void		render_background(t_game *game);
 void		draw_wall_slice(t_game *game, int x, \
-	t_ray_hit *hit, double ray_angle);
+t_ray_hit *hit, double ray_angle);
 t_img		*get_wall_texture(t_game *game, \
-	t_ray_hit *hit, double ray_angle);
+t_ray_hit *hit, double ray_angle);
 int			get_texture_color(t_img *texture, int x, int y);
 void		render_minimap(t_game *game);
 
@@ -311,13 +318,13 @@ int			get_direction(int start, int end);
 void		draw_circle(t_circle_params *circle);
 void		draw_pixel(t_game *game, int x, int y, unsigned int color);
 void		update_best_position(t_walkable *w, double r, \
-	struct s_door_state **door_states);
+struct s_door_state **door_states);
 int			is_walkable(char **map, double x, double y, \
-	struct s_door_state **door_states);
+struct s_door_state **door_states);
 int			check_area(char **map, t_bounds b, \
-	struct s_door_state **door_states);
+struct s_door_state **door_states);
 int			cell_is_walkable(char **map, int x, int y, \
-	struct s_door_state **door_states);
+struct s_door_state **door_states);
 void		calc_map_size(char **map, int *width, int *height);
 void		free_files(char **files);
 

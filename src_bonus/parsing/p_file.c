@@ -13,7 +13,7 @@
 #include "../../includes/cube3d.h"
 
 static int	handle_map_parsing(char **lines, t_map_data *data, \
-	int i, int map_start)
+int i, int map_start)
 {
 	if (!check_blank_lines_between(lines, i, map_start))
 		return (0);
@@ -50,7 +50,7 @@ static int	process_map_section(char **lines, t_map_data *data, int start_index)
 
 	map_start = find_map_start(lines, start_index);
 	if (map_start < 0 || !handle_map_parsing(lines, \
-		data, start_index, map_start))
+data, start_index, map_start))
 	{
 		free_map_data(data);
 		return (0);

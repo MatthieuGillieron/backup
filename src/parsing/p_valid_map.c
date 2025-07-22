@@ -54,7 +54,7 @@ int	check_line(char *line, int *last_playable)
 static int	check_map_char(char *line, int j, int y, t_map_ctx *ctx)
 {
 	if (line[j] != '0' && line[j] != '1' && line[j] != '\n' \
-		&& !is_player(line[j]) && line[j] != ' ')
+&& !is_player(line[j]) && line[j] != ' ')
 	{
 		cleanup_and_exit(ERR_MAP_INVALID_CHAR, ctx->files, ctx->map_data);
 		return (0);

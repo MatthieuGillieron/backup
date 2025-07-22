@@ -84,7 +84,7 @@ static int	perform_dda(t_game *game, t_ray_pos *pos, t_ray_dir *dir, int *side)
 			|| pos->map_x >= (int)ft_strlen(game->map[pos->map_y]))
 			hit = 1;
 		else if (game->map[pos->map_y][pos->map_x] == '1' || \
-			game->map[pos->map_y][pos->map_x] == 'D')
+game->map[pos->map_y][pos->map_x] == 'D')
 			hit = 1;
 	}
 	return (hit);

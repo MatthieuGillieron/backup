@@ -29,7 +29,7 @@ static int	get_last_nonspace_index(char *line)
 }
 
 static void	update_map_dimensions(int row, int last_nonspace, \
-	int *width, int *last_nonempty_row)
+int *width, int *last_nonempty_row)
 {
 	if (last_nonspace != -1)
 		*last_nonempty_row = row;

@@ -23,7 +23,7 @@ int	is_playable(char c)
 }
 
 int	is_map_enclosed(char **map, t_player *player, \
-	char **files, t_map_data *map_data)
+char **files, t_map_data *map_data)
 {
 	int			i;
 	t_map_check	info;
